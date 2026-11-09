@@ -1,0 +1,1 @@
+export default function Page(){return <section className="section narrow"><h1>Privacy policy</h1><p className="intro">Draft placeholder awaiting approved, versioned legal content. This design preview has no enquiry collection or account sign-up enabled.</p></section>}

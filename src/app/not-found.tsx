@@ -1,0 +1,1 @@
+import Link from 'next/link';export default function Missing(){return <section className="section"><h1>This work is elsewhere.</h1><p>We could not find that page.</p><Link href="/artworks">Return to the collection →</Link></section>}

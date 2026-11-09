@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export function Header(){return <><div className="announcement">Original Indian art. Personal guidance. A considered way to collect.</div><header><Link className="brand" href="/" aria-label="tRA home">tRA<span>THE ROOTED ART</span></Link><nav aria-label="Main navigation"><Link href="/artworks">Discover art</Link><Link href="/auctions">Auction lobby <span className="dot"/></Link><Link href="/how-it-works">How it works</Link><Link href="/for-artists">For artists</Link></nav><Link className="text-link" href="/login">Sign in ↗</Link></header></>}

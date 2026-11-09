@@ -1,0 +1,3 @@
+# Administrator handoff
+
+Public screens are reviewable; administrative route protection is present but queue interfaces remain pending. Assign roles through trusted bootstrap only. Do not open auctions yet. Configure current auction terms and eligibility; ensure artwork quality, price and media approval. After bids, closing must be server-controlled; a win creates an unpaid sale and reserves the artwork. Payment evidence, certificate checks, shipping and settlement must be built before operational use. Only super admins should eventually assign privileged roles; curators recommend and admins publish.

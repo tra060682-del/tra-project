@@ -1,0 +1,1 @@
+export function Art({tone, title}:{tone:string;title:string}) {return <div className={`art art-${tone}`} role="img" aria-label={`${title}: illustrative placeholder, original artwork pending`}><div className="art-disc"/><div className="art-stem"/><div className="art-petal p1"/><div className="art-petal p2"/><div className="art-petal p3"/><small>ILLUSTRATIVE STUDY</small></div>}

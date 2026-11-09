@@ -1,0 +1,1 @@
+export default function Page(){return <section className="section narrow"><h1>Let’s talk about art.</h1><p className="intro">Enquiry forms and support contact settings will be connected after platform configuration. This preview does not collect personal information or send enquiries.</p></section>}

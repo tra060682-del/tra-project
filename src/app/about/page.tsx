@@ -1,0 +1,1 @@
+export default function Page(){return <section className="section narrow"><h1>Rooted in art. Open to discovery.</h1><p className="intro">tRA is being built as a curated platform for original Indian paintings, bringing artists, curators, intermediaries and collectors into a considered discovery and buying process.</p></section>}

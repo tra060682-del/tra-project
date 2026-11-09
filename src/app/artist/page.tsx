@@ -1,0 +1,1 @@
+import {requireRole} from '@/lib/auth';export default async function Artist(){await requireRole(['artist']);return <section className="section"><h1>Your artist workspace</h1><p>Your account is protected. Onboarding, submission and fulfilment forms are the next implementation phase.</p></section>}

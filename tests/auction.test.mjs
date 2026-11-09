@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {resolveProxy,extendClose} from '../src/lib/auction-engine.mjs';
+const terms={opening:10000,increment:1000};const b=(user,maximum,priority)=>({user,maximum,priority});
+test('first no-reserve bidder pays opening, maximum remains private',()=>assert.deepEqual(resolveProxy({...terms,bids:[b('a',50000,1)]}),{winner:'a',price:10000,reserveMet:true}));
+test('competing maximum sets one increment above second',()=>assert.equal(resolveProxy({...terms,bids:[b('a',50000,1),b('b',30000,2)]}).price,31000));
+test('equal maximum honours earliest priority without exceeding ceiling',()=>assert.deepEqual(resolveProxy({...terms,bids:[b('b',50000,2),b('a',50000,1)]}),{winner:'a',price:50000,reserveMet:true}));
+test('below reserve places full maximum and stays unmet',()=>assert.deepEqual(resolveProxy({...terms,reserve:40000,bids:[b('a',30000,1)]}),{winner:'a',price:30000,reserveMet:false}));
+test('crossing reserve does not expose full maximum',()=>assert.equal(resolveProxy({...terms,reserve:40000,bids:[b('a',70000,1)]}).price,40000));
+test('no bids yields no winner',()=>assert.equal(resolveProxy({...terms,bids:[]}).winner,null));
+test('closing extension resets to two minutes after accepted bid',()=>assert.equal(extendClose(300000,290000),410000));
+test('no early extension',()=>assert.equal(extendClose(300000,100000),300000));
+test('reject bid exactly at close',()=>assert.throws(()=>extendClose(300000,300000)));
+test('duplicate bidder and invalid money rejected',()=>{assert.throws(()=>resolveProxy({...terms,bids:[b('a',20000,1),b('a',30000,2)]}));assert.throws(()=>resolveProxy({...terms,bids:[b('a',1.2,1)]}));});

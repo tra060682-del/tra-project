@@ -1,0 +1,1 @@
+import {requireRole} from '@/lib/auth';export default async function Admin(){await requireRole(['super_admin','admin']);return <section className="section"><h1>Operations workspace</h1><p>The role boundary is active. Review queues and operational modules are scheduled for the next implementation phase.</p></section>}

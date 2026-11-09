@@ -1,0 +1,1 @@
+export default function Page(){return <section className="section narrow"><h1>Access restricted</h1><p className="intro">Your account does not have the permission required for this workspace.</p></section>}

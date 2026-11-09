@@ -1,0 +1,1 @@
+export default function Page(){return <section className="section narrow"><h1>Terms of use</h1><p className="intro">Draft placeholder awaiting approved platform and auction terms. Auctions and bidding are not open to the public.</p></section>}
