@@ -1,0 +1,11 @@
+schemaname,tablename,policyname,roles,cmd,qual,with_check
+public,legal_acceptances,legal_acceptance_admin,{authenticated},ALL,( SELECT tra_is_admin() AS tra_is_admin),( SELECT tra_is_admin() AS tra_is_admin)
+public,legal_acceptances,legal_acceptance_insert,{authenticated},INSERT,null,"((user_id = ( SELECT auth.uid() AS uid)) AND (EXISTS ( SELECT 1
+   FROM legal_document_versions v
+  WHERE ((v.id = legal_acceptances.version_id) AND v.is_published))))"
+public,legal_acceptances,legal_acceptance_read,{authenticated},SELECT,((user_id = ( SELECT auth.uid() AS uid)) OR ( SELECT tra_is_admin() AS tra_is_admin)),null
+public,profiles,profile_admin_insert,{authenticated},INSERT,null,( SELECT tra_is_admin() AS tra_is_admin)
+public,profiles,profile_read,{authenticated},SELECT,((id = ( SELECT auth.uid() AS uid)) OR ( SELECT tra_is_admin() AS tra_is_admin)),null
+public,profiles,profile_update,{authenticated},UPDATE,((id = ( SELECT auth.uid() AS uid)) OR ( SELECT tra_is_admin() AS tra_is_admin)),((id = ( SELECT auth.uid() AS uid)) OR ( SELECT tra_is_admin() AS tra_is_admin))
+public,user_roles,admin_all,{authenticated},ALL,( SELECT tra_is_admin() AS tra_is_admin),( SELECT tra_is_admin() AS tra_is_admin)
+public,user_roles,role_self_read,{authenticated},SELECT,(user_id = ( SELECT auth.uid() AS uid)),null

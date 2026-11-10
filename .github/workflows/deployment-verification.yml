@@ -1,0 +1,47 @@
+name: Deployment verification
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: HTTPS Netlify preview or production URL
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deployment-verification-${{ github.event.deployment.id || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.deployment_status.state == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Verify deployed application
+        run: npm run test:smoke
+        env:
+          SMOKE_BASE_URL: ${{ github.event.deployment_status.target_url || inputs.url }}
+      - name: Verify deployed registration, login and authorization routes
+        run: npm run test:e2e
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url || inputs.url }}
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-playwright-report-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 14
+      - if: ${{ failure() }}
+        run: echo "### Deployment verification failed\nDo not promote this deploy. Inspect route output and the Playwright artifact." >> "$GITHUB_STEP_SUMMARY"

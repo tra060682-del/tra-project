@@ -1,6 +1,26 @@
 [build]
-command = "npm run build"
+command = "npm run build:netlify"
 publish = ".next"
 
 [build.environment]
 NODE_VERSION = "22"
+NPM_FLAGS = "--no-audit"
+
+[context.production]
+command = "npm run build:netlify"
+
+[context.production.environment]
+NEXT_PUBLIC_SITE_URL = "https://therealart.in"
+SUPABASE_EXPECTED_PROJECT_REF = "aewoiynwpyqawiluwlkj"
+
+[context.deploy-preview]
+command = "npm run build:netlify"
+
+[context.deploy-preview.environment]
+SUPABASE_EXPECTED_PROJECT_REF = "ocstvctvmychromkcurw"
+
+[context.branch-deploy]
+command = "npm run build:netlify"
+
+[context.branch-deploy.environment]
+SUPABASE_EXPECTED_PROJECT_REF = "ocstvctvmychromkcurw"

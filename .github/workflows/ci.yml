@@ -1,0 +1,114 @@
+name: Required checks
+
+on:
+  pull_request:
+  push:
+    branches: [main, feature/tra-artist-onboarding]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  application:
+    name: TypeScript, unit, integration, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run test:unit
+      - run: npm run test:integration
+      - run: npm run build
+      - if: ${{ failure() }}
+        run: echo "### Application validation failed\nInspect the first failed TypeScript, test, or build step above." >> "$GITHUB_STEP_SUMMARY"
+
+  dependency-security:
+    name: Dependency security
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm audit --audit-level=high
+      - if: ${{ failure() }}
+        run: echo "### Dependency security failed\nResolve high/critical advisories before merge." >> "$GITHUB_STEP_SUMMARY"
+
+  browser-e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+        env:
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+      - if: ${{ failure() }}
+        run: echo "### Playwright failed\nDownload the playwright-report artifact for traces and screenshots." >> "$GITHUB_STEP_SUMMARY"
+
+  migration-rehearsal:
+    name: Disposable Supabase migration and RLS rehearsal
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run migration:drift
+      - run: npm run test:database
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: migration-readiness
+          path: artifacts/
+          retention-days: 30
+      - if: ${{ failure() }}
+        run: echo "### Migration rehearsal failed\nProduction database execution is blocked. Inspect the migration-readiness artifact." >> "$GITHUB_STEP_SUMMARY"
+
+  required-checks:
+    name: required-checks
+    if: ${{ always() }}
+    needs: [application, dependency-security, browser-e2e, migration-rehearsal]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Enforce all required jobs
+        env:
+          APPLICATION: ${{ needs.application.result }}
+          DEPENDENCIES: ${{ needs.dependency-security.result }}
+          E2E: ${{ needs.browser-e2e.result }}
+          DATABASE: ${{ needs.migration-rehearsal.result }}
+        run: |
+          echo "Application=$APPLICATION Dependencies=$DEPENDENCIES E2E=$E2E Database=$DATABASE"
+          test "$APPLICATION" = success
+          test "$DEPENDENCIES" = success
+          test "$E2E" = success
+          test "$DATABASE" = success

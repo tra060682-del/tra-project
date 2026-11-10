@@ -1,0 +1,43 @@
+name: Development Supabase integration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/tra-artist-onboarding]
+  schedule:
+    - cron: "17 2 * * 2"
+
+concurrency:
+  group: development-supabase-integration
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-auth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: development
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Test synthetic artist lifecycle in tra-development
+        run: npm run test:development-auth
+        env:
+          DEV_SUPABASE_URL: ${{ secrets.DEV_SUPABASE_URL }}
+          DEV_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.DEV_SUPABASE_PUBLISHABLE_KEY }}
+          DEV_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.DEV_SUPABASE_SERVICE_ROLE_KEY }}
+          DEV_SUPABASE_PROJECT_REF: ${{ secrets.DEV_SUPABASE_PROJECT_REF }}
+          PROD_SUPABASE_PROJECT_REF: ${{ secrets.PROD_SUPABASE_PROJECT_REF }}
+      - name: Verify all 13 migration checks remain clean
+        run: npx --yes supabase@latest db query --remote="$DEV_SUPABASE_PROJECT_REF" --read-only --file supabase/tests/artist_auth_verification_counts.sql
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          DEV_SUPABASE_PROJECT_REF: ${{ secrets.DEV_SUPABASE_PROJECT_REF }}
+      - if: ${{ failure() }}
+        run: echo "### Development integration failed\nCheck the synthetic Auth/RLS step first. Cleanup failures are release blockers." >> "$GITHUB_STEP_SUMMARY"

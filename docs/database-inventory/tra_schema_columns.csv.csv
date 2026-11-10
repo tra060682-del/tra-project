@@ -1,0 +1,42 @@
+table_name,column_name,data_type,is_nullable,column_default
+artist_onboarding_requests,id,uuid,NO,gen_random_uuid()
+artist_onboarding_requests,artist_id,uuid,NO,null
+artist_onboarding_requests,status,USER-DEFINED,NO,'draft'::artist_status
+artist_onboarding_requests,artist_note,text,YES,null
+artist_onboarding_requests,admin_remarks,text,YES,null
+artist_onboarding_requests,submitted_at,timestamp with time zone,YES,null
+artist_onboarding_requests,reviewed_at,timestamp with time zone,YES,null
+artist_onboarding_requests,reviewed_by,uuid,YES,null
+artist_onboarding_requests,created_at,timestamp with time zone,NO,now()
+artist_onboarding_requests,updated_at,timestamp with time zone,NO,now()
+legal_acceptances,id,uuid,NO,gen_random_uuid()
+legal_acceptances,user_id,uuid,NO,null
+legal_acceptances,version_id,uuid,NO,null
+legal_acceptances,accepted_text_snapshot,text,NO,null
+legal_acceptances,accepted_at,timestamp with time zone,NO,now()
+legal_acceptances,ip_address,inet,YES,null
+legal_acceptances,user_agent,text,YES,null
+legal_document_versions,id,uuid,NO,gen_random_uuid()
+legal_document_versions,document_id,uuid,NO,null
+legal_document_versions,version,integer,NO,null
+legal_document_versions,body,text,NO,null
+legal_document_versions,content_sha256,text,YES,null
+legal_document_versions,effective_at,timestamp with time zone,NO,now()
+legal_document_versions,is_published,boolean,NO,false
+legal_document_versions,created_at,timestamp with time zone,NO,now()
+legal_documents,id,uuid,NO,gen_random_uuid()
+legal_documents,code,text,NO,null
+legal_documents,title,text,NO,null
+legal_documents,audience,text,NO,'artist'::text
+legal_documents,required_for_artist,boolean,NO,false
+legal_documents,is_active,boolean,NO,true
+legal_documents,created_at,timestamp with time zone,NO,now()
+legal_documents,updated_at,timestamp with time zone,NO,now()
+profiles,id,uuid,NO,null
+profiles,display_name,text,YES,null
+profiles,phone,text,YES,null
+profiles,created_at,timestamp with time zone,NO,now()
+profiles,updated_at,timestamp with time zone,NO,now()
+user_roles,user_id,uuid,NO,null
+user_roles,role,USER-DEFINED,NO,null
+user_roles,created_at,timestamp with time zone,NO,now()

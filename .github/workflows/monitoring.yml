@@ -1,0 +1,30 @@
+name: Production availability
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-availability
+  cancel-in-progress: true
+
+jobs:
+  critical-routes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:smoke
+        env:
+          SMOKE_BASE_URL: https://therealart.in
+      - if: ${{ failure() }}
+        run: echo "### Production availability failed\nCheck the named public/auth route and HTTP status above; no credentials were used." >> "$GITHUB_STEP_SUMMARY"

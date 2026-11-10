@@ -5,24 +5,36 @@
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "next build",
+    "build:netlify": "node scripts/netlify-build.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "node --test tests/*.test.mjs",
+    "test:integration": "node --test tests/integration/*.test.mjs",
+    "test:e2e": "node scripts/run-playwright.mjs",
+    "test:database": "node scripts/database-rehearsal.mjs",
+    "test:development-auth": "node scripts/development-auth-smoke.mjs",
+    "cleanup:development-auth": "node scripts/cleanup-development-synthetic-users.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
+    "migration:drift": "node scripts/compare-inventory.mjs",
+    "verify": "npm run typecheck && npm test",
+    "ci": "npm run verify && npm run build"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.57.0",
     "next": "^16.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "@supabase/ssr": "^0.7.0",
-    "@supabase/supabase-js": "^2.57.0",
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "typescript": "^5.9.0",
+    "@playwright/test": "^1.65.0",
+    "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "tailwindcss": "^4.1.0",
-    "@tailwindcss/postcss": "^4.1.0"
+    "typescript": "^5.9.0"
   }
 }
