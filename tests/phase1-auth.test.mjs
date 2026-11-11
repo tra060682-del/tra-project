@@ -4,9 +4,9 @@ import {readFile} from 'node:fs/promises';
 
 const read=(path)=>readFile(new URL(`../${path}`,import.meta.url),'utf8');
 
-test('public header uses The Real Art and has no auction navigation',async()=>{
+test('public header uses The Reverence of Art and has no auction navigation',async()=>{
   const header=await read('src/components/header.tsx');
-  assert.match(header,/THE REAL ART/);
+  assert.match(header,/THE REVERENCE OF ART/);
   assert.match(header,/Join as Artist/);
   assert.doesNotMatch(header,/\/auctions|Auction lobby/i);
 });

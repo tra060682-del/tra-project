@@ -17,7 +17,7 @@ In Supabase **Authentication → URL Configuration** set:
 - Site URL: `https://therealart.in`
 - Redirect URLs: `https://therealart.in/auth/callback` and `http://localhost:3000/auth/callback`
 
-Keep email confirmation enabled. Configure a production SMTP provider and update the confirmation/recovery email templates with tRA — The Real Art branding. The application supplies the callback and destination in each request; do not use a wildcard production redirect.
+Keep email confirmation enabled. Configure a production SMTP provider and update the confirmation/recovery email templates with tRA — The Reverence of Art branding. The application supplies the callback and destination in each request; do not use a wildcard production redirect.
 
 Create a trusted admin identity in Supabase Auth, verify it, then assign its UUID through a trusted SQL session:
 

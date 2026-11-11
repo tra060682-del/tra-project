@@ -10,3 +10,4 @@ artifacts/
 /dist/
 .vinext/
 .cloudflare/
+/design-reference/
