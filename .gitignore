@@ -7,3 +7,6 @@ test-results/
 artifacts/
 !.env.example
 *.tsbuildinfo
+/dist/
+.vinext/
+.cloudflare/

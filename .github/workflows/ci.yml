@@ -71,6 +71,35 @@ jobs:
       - if: ${{ failure() }}
         run: echo "### Playwright failed\nDownload the playwright-report artifact for traces and screenshots." >> "$GITHUB_STEP_SUMMARY"
 
+  cloudflare-worker:
+    name: Cloudflare Worker compatibility and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_DEPLOY_ENV: development
+      SUPABASE_EXPECTED_PROJECT_REF: ocstvctvmychromkcurw
+      NEXT_PUBLIC_SUPABASE_URL: https://ocstvctvmychromkcurw.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_synthetic_only
+      NEXT_PUBLIC_SITE_URL: https://tra-project-development.example.workers.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.0
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck:cloudflare
+      - run: npm run check:cloudflare
+      - run: npm run build:cloudflare
+      - if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-worker-build
+          path: .cloudflare/output/
+          retention-days: 7
+      - if: ${{ failure() }}
+        run: echo "### Cloudflare Worker validation failed\nInspect vinext compatibility, generated types, and the Worker build output above." >> "$GITHUB_STEP_SUMMARY"
+
   migration-rehearsal:
     name: Disposable Supabase migration and RLS rehearsal
     runs-on: ubuntu-latest
@@ -96,7 +125,7 @@ jobs:
   required-checks:
     name: required-checks
     if: ${{ always() }}
-    needs: [application, dependency-security, browser-e2e, migration-rehearsal]
+    needs: [application, dependency-security, browser-e2e, cloudflare-worker, migration-rehearsal]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -105,10 +134,12 @@ jobs:
           APPLICATION: ${{ needs.application.result }}
           DEPENDENCIES: ${{ needs.dependency-security.result }}
           E2E: ${{ needs.browser-e2e.result }}
+          CLOUDFLARE: ${{ needs.cloudflare-worker.result }}
           DATABASE: ${{ needs.migration-rehearsal.result }}
         run: |
-          echo "Application=$APPLICATION Dependencies=$DEPENDENCIES E2E=$E2E Database=$DATABASE"
+          echo "Application=$APPLICATION Dependencies=$DEPENDENCIES E2E=$E2E Cloudflare=$CLOUDFLARE Database=$DATABASE"
           test "$APPLICATION" = success
           test "$DEPENDENCIES" = success
           test "$E2E" = success
+          test "$CLOUDFLARE" = success
           test "$DATABASE" = success
