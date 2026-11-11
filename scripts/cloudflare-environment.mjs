@@ -1,5 +1,7 @@
 const DEVELOPMENT_REF = 'ocstvctvmychromkcurw';
 const PRODUCTION_REF = 'aewoiynwpyqawiluwlkj';
+const DEVELOPMENT_SITE_ORIGIN = 'https://tra-development.tra060682.workers.dev';
+const PRODUCTION_SITE_ORIGIN = 'https://therealart.in';
 
 function isPublishableKey(key) {
   if (!key || key.startsWith('sb_secret_')) return false;
@@ -36,11 +38,11 @@ export function validateCloudflareEnvironment(environment = process.env) {
   if (siteUrl.protocol !== 'https:' || siteUrl.pathname !== '/' || siteUrl.search || siteUrl.hash) {
     throw new Error('NEXT_PUBLIC_SITE_URL must be a canonical HTTPS origin');
   }
-  if (deploymentEnvironment === 'production' && siteUrl.origin !== 'https://therealart.in') {
-    throw new Error('Refusing production build: canonical site origin must be https://therealart.in');
-  }
-  if (deploymentEnvironment === 'development' && siteUrl.hostname === 'therealart.in') {
-    throw new Error('Refusing development build: production site origin is not allowed');
+  const requiredSiteOrigin = deploymentEnvironment === 'production'
+    ? PRODUCTION_SITE_ORIGIN
+    : DEVELOPMENT_SITE_ORIGIN;
+  if (siteUrl.origin !== requiredSiteOrigin) {
+    throw new Error(`Refusing ${deploymentEnvironment} build: canonical site origin is not approved for this context`);
   }
 
   return { deploymentEnvironment };

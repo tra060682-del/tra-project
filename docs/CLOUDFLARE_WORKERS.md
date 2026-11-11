@@ -34,7 +34,7 @@ Exact Cloudflare deploy command:
 npm run deploy:cloudflare
 ```
 
-The deployment wrapper reuses the already validated build with `--skip-build`, verifies that its recorded environment matches the requested deployment, sets CI/non-interactive behavior, and never runs setup prompts. Development is deployed with vinext's `--env development` mode to Worker `tra-project-development`. Production resolves to Worker `tra-project` and is blocked unless `CLOUDFLARE_PRODUCTION_APPROVED=true` is present after approval.
+The deployment wrapper reuses the already validated build with `--skip-build`, verifies that its recorded environment matches the requested deployment, sets CI/non-interactive behavior, and never runs setup prompts. Development is deployed with vinext's `--env development` mode to Worker `tra-development`. Production resolves to Worker `tra-project` and is blocked unless `CLOUDFLARE_PRODUCTION_APPROVED=true` is present after approval.
 
 ## Required environment values
 
@@ -44,7 +44,7 @@ The deployment wrapper reuses the already validated build with `--skip-build`, v
 | `SUPABASE_EXPECTED_PROJECT_REF` | `ocstvctvmychromkcurw` | approved production ref |
 | `NEXT_PUBLIC_SUPABASE_URL` | tra-development URL | production URL |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | development publishable key | production publishable key |
-| `NEXT_PUBLIC_SITE_URL` | exact development Worker HTTPS origin | `https://therealart.in` |
+| `NEXT_PUBLIC_SITE_URL` | `https://tra-development.tra060682.workers.dev` | `https://therealart.in` |
 | `CLOUDFLARE_ACCOUNT_ID` | secret-store value | secret-store value |
 | `CLOUDFLARE_API_TOKEN` | scoped Worker deployment token | scoped Worker deployment token |
 | `CLOUDFLARE_PRODUCTION_APPROVED` | unset | `true` for the approved run only |
@@ -53,7 +53,7 @@ The deployment wrapper reuses the already validated build with `--skip-build`, v
 
 ## Cloudflare dashboard
 
-Use the existing `tra-project` Worker/project and the repository root. Configure Node `22.23.0` or newer within the supported engine range, `npm ci` as dependency installation, `npm run build:cloudflare` as build, and `npm run deploy:cloudflare` as deploy. Store account ID, API token, Supabase publishable key, and any Cloudinary credentials as protected variables. Feature/development builds must select the development values above; do not inherit production Supabase variables.
+Use the existing Cloudflare account and the repository root. Development targets the dedicated `tra-development` Worker; production remains `tra-project`. Configure Node `22.23.0` or newer within the supported engine range, `npm ci` as dependency installation, `npm run build:cloudflare` as build, and `npm run deploy:cloudflare` as deploy. Store account ID, API token, Supabase publishable key, and any Cloudinary credentials as protected variables. Feature/development builds must select the development values above; do not inherit production Supabase variables.
 
 Before enabling a production custom domain, add the exact Worker callback and recovery URLs to the matching Supabase Auth redirect allow-list and smoke-test the generated `workers.dev` URL. Changing `therealart.in` DNS or removing Netlify is outside this configuration.
 

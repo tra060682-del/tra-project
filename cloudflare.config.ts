@@ -1,7 +1,7 @@
 import { bindings, defineConfig, defineWorker } from "cf/config";
 
 const workerName = (mode: string | undefined) =>
-  mode === "production" ? "tra-project" : `tra-project-${mode || "development"}`;
+  mode === "production" ? "tra-project" : "tra-development";
 
 export default defineConfig(({ mode }) => ({
   accountId: process.env.CLOUDFLARE_ACCOUNT_ID,

@@ -47,7 +47,7 @@ Never create `NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY`. Never put a service-role k
 
 ## Cloudflare Workers variables
 
-Configure development and production as separate Cloudflare build/deployment environments. Development must use Worker `tra-project-development`, `CLOUDFLARE_DEPLOY_ENV=development`, `SUPABASE_EXPECTED_PROJECT_REF=ocstvctvmychromkcurw`, the development Supabase URL/publishable key, and its own HTTPS `NEXT_PUBLIC_SITE_URL`. Production uses Worker `tra-project`, `CLOUDFLARE_DEPLOY_ENV=production`, the production ref/URL/publishable key, and `NEXT_PUBLIC_SITE_URL=https://therealart.in`.
+Configure development and production as separate Cloudflare build/deployment environments. Development must use Worker `tra-development`, `CLOUDFLARE_DEPLOY_ENV=development`, `SUPABASE_EXPECTED_PROJECT_REF=ocstvctvmychromkcurw`, the development Supabase URL/publishable key, and `NEXT_PUBLIC_SITE_URL=https://tra-development.tra060682.workers.dev`. Production uses Worker `tra-project`, `CLOUDFLARE_DEPLOY_ENV=production`, the production ref/URL/publishable key, and `NEXT_PUBLIC_SITE_URL=https://therealart.in`.
 
 Deployment automation also needs `CLOUDFLARE_ACCOUNT_ID` and a scoped `CLOUDFLARE_API_TOKEN` in the platform secret store. Never expose either in logs or commit them. Set `CLOUDFLARE_PRODUCTION_APPROVED=true` only for the explicitly approved production run. Service-role keys are prohibited in Workers.
 
@@ -60,7 +60,7 @@ For `tra-development`, configure a non-production site URL and allow exact callb
 - `http://localhost:3000/auth/callback`
 - `http://127.0.0.1:3000/auth/callback`
 - the exact Netlify Deploy Preview callback URL(s)
-- the exact development Workers callback URL, for example `https://tra-project-development.<account-subdomain>.workers.dev/auth/callback`
+- `https://tra-development.tra060682.workers.dev/auth/callback`
 
 Use a Netlify wildcard only after confirming the existing site slug and reviewing Supabase's redirect wildcard rules. For production, the site URL is `https://therealart.in` and the callback/recovery allow-list must include `https://therealart.in/auth/callback` and `https://therealart.in/reset-password`. Authentication settings are changed manually under approval, not by these workflows.
 
