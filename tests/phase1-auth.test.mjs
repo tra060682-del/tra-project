@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {authErrorSummary,registrationErrorMessage} from '../src/lib/auth-errors.ts';
 
 const read=(path)=>readFile(new URL(`../${path}`,import.meta.url),'utf8');
 
@@ -73,4 +74,22 @@ test('auth callback rejects unsafe destinations',async()=>{
   assert.match(callback,/startsWith\('\/'\)/);
   assert.match(callback,/!candidate\.startsWith\('\/\/'\)/);
   assert.match(callback,/exchangeCodeForSession/);
+});
+
+test('registration errors are actionable without exposing provider details',()=>{
+  assert.equal(registrationErrorMessage({code:'over_email_send_rate_limit'}),'Verification email service is temporarily at capacity. Please wait a few minutes and try again.');
+  assert.equal(registrationErrorMessage({code:'email_address_invalid'}),'Please use a valid, deliverable email address.');
+  assert.match(registrationErrorMessage({code:'email_exists'}),/signing in or resetting your password/);
+  const rawMessage='database detail that must not reach the browser';
+  assert.doesNotMatch(registrationErrorMessage({code:'unexpected',message:rawMessage}),new RegExp(rawMessage));
+  assert.deepEqual(authErrorSummary({code:'over_email_send_rate_limit',status:429,message:rawMessage}),{code:'over_email_send_rate_limit',status:429});
+});
+
+test('artist signup sends the development callback and logs only a safe summary',async()=>{
+  const actions=await read('src/app/auth/actions.ts');
+  const smoke=await read('scripts/development-auth-smoke.mjs');
+  assert.match(actions,/emailRedirectTo:`\$\{siteUrl\(\)\}\/auth\/callback\?intent=artist&next=\/artist`/);
+  assert.match(actions,/authErrorSummary\(error\)/);
+  assert.doesNotMatch(actions,/console\.(?:warn|error)\([^\n]*error\.message/);
+  assert.match(smoke,/generatedRedirect !== callbackUrl/);
 });

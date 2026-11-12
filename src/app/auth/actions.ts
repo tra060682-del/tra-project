@@ -1,6 +1,7 @@
 'use server';
 
 import {redirect} from 'next/navigation';
+import {authErrorSummary, registrationErrorMessage} from '@/lib/auth-errors';
 import {supabase} from '@/lib/supabase/server';
 
 function value(data:FormData,name:string){return String(data.get(name)??'').trim()}
@@ -13,9 +14,10 @@ export async function registerArtist(data:FormData){
   const email=value(data,'email').toLowerCase();
   const password=value(data,'password');
   if(displayName.length<2||displayName.length>120||!email||password.length<8)redirect(destination('/join-as-artist','error','Please enter your name, a valid email, and a password of at least 8 characters.'));
-  const db=await supabase();
+  let db;
+  try{db=await supabase()}catch{console.error('Artist registration unavailable',{code:'supabase_not_configured'});redirect(destination('/join-as-artist','error','Registration is temporarily unavailable. Please try again later.'))}
   const {data:result,error}=await db.auth.signUp({email,password,options:{data:{display_name:displayName,signup_intent:'artist'},emailRedirectTo:`${siteUrl()}/auth/callback?intent=artist&next=/artist`}});
-  if(error)redirect(destination('/join-as-artist','error','We could not create the account. Please check the details or sign in if you already registered.'));
+  if(error){console.warn('Artist signup rejected',authErrorSummary(error));redirect(destination('/join-as-artist','error',registrationErrorMessage(error)))}
   if(result.session){
     const {error:roleError}=await db.rpc('register_current_user_as_artist',{p_display_name:displayName});
     if(roleError){await db.auth.signOut();redirect(destination('/login','error','Your account was verified, but the artist workspace could not be prepared. Please contact support.'))}
@@ -30,9 +32,10 @@ export async function registerIntermediary(data:FormData){
   const email=value(data,'email').toLowerCase();
   const password=value(data,'password');
   if(displayName.length<2||displayName.length>120||!email||password.length<8)redirect(destination('/join-as-intermediary','error','Please enter your name, a valid email, and a password of at least 8 characters.'));
-  const db=await supabase();
+  let db;
+  try{db=await supabase()}catch{console.error('Intermediary registration unavailable',{code:'supabase_not_configured'});redirect(destination('/join-as-intermediary','error','Registration is temporarily unavailable. Please try again later.'))}
   const {data:result,error}=await db.auth.signUp({email,password,options:{data:{display_name:displayName,organisation_name:organisation,signup_intent:'intermediary'},emailRedirectTo:`${siteUrl()}/auth/callback?intent=intermediary&next=/intermediary`}});
-  if(error)redirect(destination('/join-as-intermediary','error','We could not create the account. Please check the details or sign in if you already registered.'));
+  if(error){console.warn('Intermediary signup rejected',authErrorSummary(error));redirect(destination('/join-as-intermediary','error',registrationErrorMessage(error)))}
   if(result.session){const {error:roleError}=await db.rpc('register_current_user_as_intermediary',{p_display_name:displayName,p_organisation:organisation||null});if(roleError){await db.auth.signOut();redirect(destination('/login','error','Your intermediary workspace could not be prepared. Please contact support.'))}redirect('/intermediary')}
   redirect(destination('/join-as-intermediary','message','Check your email to verify your address and finish creating your intermediary account.'));
 }

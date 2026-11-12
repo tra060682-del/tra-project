@@ -33,6 +33,7 @@ jobs:
           DEV_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.DEV_SUPABASE_PUBLISHABLE_KEY }}
           DEV_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.DEV_SUPABASE_SERVICE_ROLE_KEY }}
           DEV_SUPABASE_PROJECT_REF: ${{ secrets.DEV_SUPABASE_PROJECT_REF }}
+          DEV_SITE_URL: https://tra-development.tra060682.workers.dev
           PROD_SUPABASE_PROJECT_REF: ${{ secrets.PROD_SUPABASE_PROJECT_REF }}
       - name: Verify all 13 migration checks remain clean
         run: npx --yes supabase@latest db query --remote="$DEV_SUPABASE_PROJECT_REF" --read-only --file supabase/tests/artist_auth_verification_counts.sql

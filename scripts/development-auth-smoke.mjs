@@ -1,6 +1,7 @@
 import {createClient} from '@supabase/supabase-js';
 
 const {DEV_SUPABASE_URL, DEV_SUPABASE_PUBLISHABLE_KEY, DEV_SUPABASE_SERVICE_ROLE_KEY, DEV_SUPABASE_PROJECT_REF, PROD_SUPABASE_PROJECT_REF} = process.env;
+const DEV_SITE_URL = (process.env.DEV_SITE_URL || 'https://tra-development.tra060682.workers.dev').replace(/\/$/, '');
 for (const [name, value] of Object.entries({DEV_SUPABASE_URL, DEV_SUPABASE_PUBLISHABLE_KEY, DEV_SUPABASE_SERVICE_ROLE_KEY, DEV_SUPABASE_PROJECT_REF})) {
   if (!value) throw new Error(`${name} is required`);
 }
@@ -55,8 +56,11 @@ const createConfirmed = async (prefix, role) => {
 };
 try {
   // Generate a real signup confirmation token without sending email to an external inbox.
-  const link = await admin.auth.admin.generateLink({type: 'signup', email, password, options: {data: {display_name: 'CI Artist'}}});
+  const callbackUrl = `${DEV_SITE_URL}/auth/callback?intent=artist&next=/artist`;
+  const link = await admin.auth.admin.generateLink({type: 'signup', email, password, options: {data: {display_name: 'CI Artist'}, redirectTo: callbackUrl}});
   if (link.error) throw link.error;
+  const generatedRedirect = new URL(link.data.properties.action_link).searchParams.get('redirect_to');
+  if (generatedRedirect !== callbackUrl) throw new Error('Supabase Auth did not preserve the development callback URL');
   userIds.push(link.data.user.id);
   const client = clientFor();
   const rejected = await client.auth.signInWithPassword({email, password});
