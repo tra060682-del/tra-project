@@ -1,0 +1,3 @@
+'use server';
+import {revalidatePath} from 'next/cache';import {z} from 'zod';import {requireRole} from '@/lib/auth';
+export async function submitArtworkForAuction(form:FormData){const artworkId=z.uuid().parse(form.get('artworkId')),artistNote=z.string().trim().max(1000).parse(form.get('artistNote')||'');const {db,user}=await requireRole(['artist']);const {data:artist,error:artistError}=await db.from('artist_profiles').select('id').eq('user_id',user.id).single();if(artistError||!artist)throw new Error('Artist profile required.');const {error}=await db.from('auction_submissions').insert({artwork_id:artworkId,artist_id:artist.id,artist_note:artistNote});if(error)throw new Error('Artwork could not be submitted for auction consideration.');revalidatePath('/artist');}
