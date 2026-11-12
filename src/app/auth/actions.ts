@@ -24,6 +24,19 @@ export async function registerArtist(data:FormData){
   redirect(destination('/join-as-artist','message','Check your email to verify your address and finish creating your artist account.'));
 }
 
+export async function registerIntermediary(data:FormData){
+  const displayName=value(data,'displayName');
+  const organisation=value(data,'organisation');
+  const email=value(data,'email').toLowerCase();
+  const password=value(data,'password');
+  if(displayName.length<2||displayName.length>120||!email||password.length<8)redirect(destination('/join-as-intermediary','error','Please enter your name, a valid email, and a password of at least 8 characters.'));
+  const db=await supabase();
+  const {data:result,error}=await db.auth.signUp({email,password,options:{data:{display_name:displayName,organisation_name:organisation,signup_intent:'intermediary'},emailRedirectTo:`${siteUrl()}/auth/callback?intent=intermediary&next=/intermediary`}});
+  if(error)redirect(destination('/join-as-intermediary','error','We could not create the account. Please check the details or sign in if you already registered.'));
+  if(result.session){const {error:roleError}=await db.rpc('register_current_user_as_intermediary',{p_display_name:displayName,p_organisation:organisation||null});if(roleError){await db.auth.signOut();redirect(destination('/login','error','Your intermediary workspace could not be prepared. Please contact support.'))}redirect('/intermediary')}
+  redirect(destination('/join-as-intermediary','message','Check your email to verify your address and finish creating your intermediary account.'));
+}
+
 export async function login(data:FormData){
   const email=value(data,'email').toLowerCase();
   const password=value(data,'password');

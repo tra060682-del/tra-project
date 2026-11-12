@@ -1,9 +1,3 @@
-import type {Metadata} from 'next';
-import {Header} from '@/components/header';
-import {Footer} from '@/components/footer';
-import './globals.css';
-import './auth.css';
-
-export const metadata:Metadata={title:{default:'tRA — Original Indian Paintings, Curated with Reverence',template:'%s | tRA'},description:'The Reverence of Art is a curated assisted-commerce platform connecting art lovers with original Indian art.'};
-
-export default function Layout({children}:{children:React.ReactNode}){return <html lang="en"><body><a className="skip" href="#main">Skip to content</a><aside className="brand-rail" aria-hidden="true"><span>CURATED</span><i>•</i><span>AUTHENTIC</span><i>•</i><span>TRUSTED</span><b>✦</b></aside><div className="site-frame"><Header/><div className="demo">Catalogue preview · Artwork imagery and details are illustrative pending artist approval · Live sales are not enabled</div><main id="main">{children}</main><Footer/></div></body></html>}
+import type {Metadata} from 'next';import {Header} from '@/components/header';import {Footer} from '@/components/footer';import './globals.css';import './auth.css';
+export const metadata:Metadata={title:{default:'tRA — The Real Art',template:'%s | tRA'},description:'The Real Art is a curated assisted-commerce platform connecting art lovers with original Indian art.'};
+export default function Layout({children}:{children:React.ReactNode}){return <html lang="en"><body><a className="skip" href="#main">Skip to content</a><aside className="brand-rail" aria-hidden="true"><span>CURATED</span><i>•</i><span>AUTHENTIC</span><i>•</i><span>TRUSTED</span><b>✦</b></aside><div className="site-frame"><Header/><div className="demo">Catalogue preview · Unverified sample records are clearly labelled · Live sales are not enabled</div><main id="main">{children}</main><Footer/></div></body></html>}

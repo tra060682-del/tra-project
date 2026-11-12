@@ -2,10 +2,13 @@
 .auth-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:55px;max-width:950px}
 .auth-form{display:grid;gap:17px}
 .auth-form label{font-size:11px;letter-spacing:.7px}
-.auth-form input{display:block;width:100%;border:0;border-bottom:1px solid var(--ink);padding:10px 2px;background:transparent;margin-top:5px;border-radius:0}
+.auth-form input,.auth-form textarea,.auth-form select{display:block;width:100%;border:0;border-bottom:1px solid var(--ink);padding:10px 2px;background:transparent;margin-top:5px;border-radius:0}
+.auth-form textarea{min-height:120px}
 .auth-form .button{justify-self:start}
 .form-note{font-size:12px;color:var(--muted)}
 .form-message{padding:13px 16px;background:#eae8dd;font-size:13px}
 .form-error{background:#f0ded8;color:#6f2c20}
 .centered{justify-content:center}
 @media(max-width:540px){.auth-grid{grid-template-columns:1fr}}
+.workspace-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:30px}.workspace-card{border:1px solid var(--line);background:#fbfaf6;padding:24px;min-width:0}.workspace-card h2{font-size:25px}.workspace-card label{display:block;font-size:9px;letter-spacing:.7px;text-transform:uppercase;margin:13px 0}.workspace-card input:not([type=checkbox]),.workspace-card textarea,.workspace-card select{display:block;width:100%;margin-top:6px;padding:10px;border:1px solid var(--line);background:white}.workspace-card textarea{min-height:90px}.workspace-card p{font-size:11px;color:var(--muted)}.review-item,.legal-item{border-top:1px solid var(--line);padding:14px 0}.review-item form{display:grid;gap:7px;margin-top:8px}.catalogue-image,.catalogue-detail-image{width:100%;height:100%;object-fit:cover;background:#ece6da}.card .catalogue-image{aspect-ratio:1/1.05}.catalogue-detail-image{min-height:560px;max-height:760px}.catalogue-state{display:block;margin-top:8px;color:var(--gold);font-size:8px;text-transform:uppercase;letter-spacing:.8px}
+@media(max-width:800px){.workspace-grid{grid-template-columns:1fr}.catalogue-detail-image{min-height:380px}}

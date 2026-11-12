@@ -14,5 +14,10 @@ export async function GET(request:Request){
     const {error:roleError}=await db.rpc('register_current_user_as_artist',{});
     if(roleError){await db.auth.signOut();return NextResponse.redirect(new URL('/login?error=Your+artist+workspace+could+not+be+prepared.+Please+contact+support.',url.origin))}
   }
+  if(url.searchParams.get('intent')==='intermediary'){
+    const {data:{user}}=await db.auth.getUser();
+    const {error:roleError}=await db.rpc('register_current_user_as_intermediary',{p_display_name:user?.user_metadata?.display_name||'',p_organisation:user?.user_metadata?.organisation_name||null});
+    if(roleError){await db.auth.signOut();return NextResponse.redirect(new URL('/login?error=Your+intermediary+workspace+could+not+be+prepared.+Please+contact+support.',url.origin))}
+  }
   return NextResponse.redirect(new URL(safeNext(url.searchParams.get('next')),url.origin));
 }

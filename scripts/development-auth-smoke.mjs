@@ -15,6 +15,23 @@ const password = `Synthetic-${crypto.randomUUID()}-A1!`;
 const userIds = [];
 const clientFor = () => createClient(DEV_SUPABASE_URL, DEV_SUPABASE_PUBLISHABLE_KEY, {auth: {persistSession: false}});
 const removeSyntheticUser = async userId => {
+  const [artists,intermediaries] = await Promise.all([
+    admin.from('artist_profiles').select('id').eq('user_id',userId),
+    admin.from('intermediary_profiles').select('id').eq('user_id',userId),
+  ]);
+  if (artists.error) throw artists.error;
+  if (intermediaries.error) throw intermediaries.error;
+  const reviewerCleanup = await Promise.all([
+    admin.from('artist_representations').update({reviewed_by:null,reviewed_at:null}).eq('reviewed_by',userId),
+    admin.from('intermediary_profiles').update({reviewed_by:null,reviewed_at:null}).eq('reviewed_by',userId),
+    admin.from('artworks').update({reviewed_by:null}).eq('reviewed_by',userId),
+  ]);
+  for (const result of reviewerCleanup) if (result.error) throw result.error;
+  if (artists.data.length) { const result=await admin.from('artist_representations').delete().in('artist_id',artists.data.map(row=>row.id)); if(result.error)throw result.error; }
+  if (intermediaries.data.length) { const result=await admin.from('artist_representations').delete().in('intermediary_id',intermediaries.data.map(row=>row.id)); if(result.error)throw result.error; }
+  const intermediaryCleanup=await admin.from('intermediary_profiles').delete().eq('user_id',userId);
+  if(intermediaryCleanup.error)throw intermediaryCleanup.error;
+  for(const table of ['status_history','audit_events']){const result=await admin.from(table).delete().eq('actor_id',userId);if(result.error)throw result.error;}
   const prepared = await admin.rpc('tra_cleanup_development_synthetic_user',{p_user_id:userId});
   if (prepared.error) throw prepared.error;
   const removed = await admin.auth.admin.deleteUser(userId);
@@ -87,6 +104,30 @@ try {
     .update({status:'approved',reviewed_by:administrator.user.id,reviewed_at:new Date().toISOString()})
     .eq('id',submitted.data).select('status,reviewed_by').single();
   if (approved.error || approved.data.status !== 'approved') throw approved.error || new Error('Admin approval failed');
+  const artistProfile = await administrator.client.from('artist_profiles').select('id').eq('user_id',link.data.user.id).single();
+  if (artistProfile.error) throw artistProfile.error;
+  const artistApproved = await administrator.client.rpc('review_phase1_entity',{p_entity_type:'artist',p_entity:artistProfile.data.id,p_decision:'approved',p_remarks:'Synthetic development approval',p_final_price_paise:null});
+  if (artistApproved.error) throw artistApproved.error;
+
+  const intermediary = await createConfirmed('intermediary');
+  const intermediaryRegistered = await intermediary.client.rpc('register_current_user_as_intermediary',{p_display_name:'CI Intermediary',p_organisation:'Synthetic Agency'});
+  if (intermediaryRegistered.error) throw intermediaryRegistered.error;
+  const intermediaryRoles = await intermediary.client.from('user_roles').select('role');
+  if (intermediaryRoles.error || intermediaryRoles.data.length !== 1 || intermediaryRoles.data[0].role !== 'intermediary') throw intermediaryRoles.error || new Error('Unexpected intermediary role assignment');
+  const intermediarySaved = await intermediary.client.rpc('save_intermediary_profile',{p_data:{email:'ci.intermediary@example.test',biography:'Synthetic CI intermediary profile'}});
+  if (intermediarySaved.error) throw intermediarySaved.error;
+  const intermediarySubmitted = await intermediary.client.rpc('submit_intermediary_profile');
+  if (intermediarySubmitted.error) throw intermediarySubmitted.error;
+  const intermediaryApproved = await administrator.client.rpc('review_phase1_entity',{p_entity_type:'intermediary',p_entity:intermediarySubmitted.data,p_decision:'approved',p_remarks:'Synthetic development approval',p_final_price_paise:null});
+  if (intermediaryApproved.error) throw intermediaryApproved.error;
+  const representation = await intermediary.client.rpc('request_artist_representation',{p_artist:artistProfile.data.id,p_scopes:{can_submit_artwork:true},p_note:'Synthetic consent request'});
+  if (representation.error) throw representation.error;
+  const artistResponse = await client.rpc('respond_to_representation',{p_representation:representation.data,p_accept:true});
+  if (artistResponse.error || artistResponse.data !== 'pending_admin') throw artistResponse.error || new Error('Artist representation consent failed');
+  const unrelatedRepresentations = await secondArtist.client.from('artist_representations').select('id');
+  if (unrelatedRepresentations.error || unrelatedRepresentations.data.length) throw unrelatedRepresentations.error || new Error('Representation ownership isolation failed');
+  const representationApproved = await administrator.client.rpc('review_artist_representation',{p_representation:representation.data,p_approve:true,p_remarks:'Synthetic development approval'});
+  if (representationApproved.error || representationApproved.data !== 'approved') throw representationApproved.error || new Error('Representation admin approval failed');
   const tamper = await administrator.client.from('legal_acceptances')
     .update({acceptance_statement:'tampered'}).eq('id',accepted.data);
   if (!tamper.error) throw new Error('Legal acceptance evidence was mutable');
@@ -99,7 +140,7 @@ try {
   const loggedIn = await client.auth.signInWithPassword({email,password});
   if (loggedIn.error || !loggedIn.data.session) throw loggedIn.error || new Error('Verified login failed');
 
-  console.log('Development auth/RLS smoke PASS: signup verification, login/logout, artist provisioning, legal gate/evidence, ownership isolation, admin approval, anonymous restriction, and escalation prevention.');
+  console.log('Development auth/RLS smoke PASS: signup verification, login/logout, artist/intermediary provisioning, legal gate/evidence, representation consent, ownership isolation, admin approval, anonymous restriction, and escalation prevention.');
 } finally {
   let cleanupFailed = false;
   for (const userId of userIds.reverse()) {

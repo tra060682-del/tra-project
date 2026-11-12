@@ -25,6 +25,18 @@ begin
      set reviewed_by=null,reviewed_at=null where reviewed_by=p_user_id;
   update public.artist_profiles
      set reviewed_by=null,reviewed_at=null where reviewed_by=p_user_id;
+  update public.artworks set reviewed_by=null where reviewed_by=p_user_id;
+  update public.intermediary_profiles
+     set reviewed_by=null,reviewed_at=null where reviewed_by=p_user_id;
+  update public.artist_representations
+     set reviewed_by=null,reviewed_at=null where reviewed_by=p_user_id;
+
+  delete from public.artist_representations r
+   where r.artist_id in (select id from public.artist_profiles where user_id=p_user_id)
+      or r.intermediary_id in (select id from public.intermediary_profiles where user_id=p_user_id);
+  delete from public.intermediary_profiles where user_id=p_user_id;
+  delete from public.status_history where actor_id=p_user_id;
+  delete from public.audit_events where actor_id=p_user_id;
 
   lock table public.legal_acceptances in access exclusive mode;
   execute 'alter table public.legal_acceptances disable trigger tra_legal_acceptance_immutable_snapshot';

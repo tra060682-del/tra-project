@@ -7,7 +7,7 @@ function remaining(target:string){
   return {distance,label:`${days}d ${String(hours).padStart(2,'0')}h ${String(minutes).padStart(2,'0')}m ${String(seconds).padStart(2,'0')}s`};
 }
 export function AuctionCountdown({target,prefix='Closes in'}:{target:string;prefix?:string}){
-  const [value,setValue]=useState(()=>remaining(target));
-  useEffect(()=>{const timer=setInterval(()=>setValue(remaining(target)),1000);return()=>clearInterval(timer);},[target]);
-  return <span className="auction-countdown" aria-live="off">{value.distance?`${prefix} ${value.label}`:'Auction closed'}</span>;
+  const [value,setValue]=useState<ReturnType<typeof remaining>|null>(null);
+  useEffect(()=>{const update=()=>setValue(remaining(target));update();const timer=setInterval(update,1000);return()=>clearInterval(timer);},[target]);
+  return <span className="auction-countdown" aria-live="off">{value?(value.distance?`${prefix} ${value.label}`:'Auction closed'):'Auction timing loading…'}</span>;
 }
