@@ -14,3 +14,5 @@ export const ParcelIcon=(props:IconProps)=><Icon {...props}><path d="m4 8 8-4 8 
 export const CertificateIcon=(props:IconProps)=><Icon {...props}><rect x="5" y="3" width="14" height="16" rx="1"/><path d="M8 7h8M8 10h8M8 13h5M9 19l-1 3 4-2 4 2-1-3"/></Icon>;
 export const CareIcon=(props:IconProps)=><Icon {...props}><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z"/><path d="m8.5 11 2.2 2.2 4.8-5"/></Icon>;
 export const PaletteIcon=(props:IconProps)=><Icon {...props}><path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a2 2 0 0 1 0-4h3a6 6 0 0 0 0-12h-3Z"/><circle cx="7" cy="10" r=".7" fill="currentColor"/><circle cx="9" cy="6.5" r=".7" fill="currentColor"/><circle cx="14" cy="6" r=".7" fill="currentColor"/></Icon>;
+export const BellIcon=(props:IconProps)=><Icon {...props}><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></Icon>;
+export const UserIcon=(props:IconProps)=><Icon {...props}><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-5 3.5-7 8-7s7.2 2 8 7"/></Icon>;

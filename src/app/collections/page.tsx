@@ -1,0 +1,4 @@
+import {ArtworkImage} from '@/components/artwork-image';
+import {mediaById} from '@/data/approved-media';
+const collections=[['Modern Indian masters','ravi-varma-lady'],['Sacred narratives','jahangir-jadrup'],['Folk traditions','kalighat-vishnu']];
+export default function Collections(){return <section className="section"><div className="eyebrow">CURATED COLLECTIONS</div><h1>Ways of seeing India.</h1><p className="intro">Editorial collection foundations for the approved tRA visual language. No unverified work is offered for sale.</p><div className="grid">{collections.map(([title,id])=><article className="card" key={title}><ArtworkImage media={mediaById(id)} ratio="4 / 3"/><div className="caption"><small>EDITORIAL COLLECTION</small><h2>{title}</h2><p>Explore a visual thread through Indian art history.</p></div></article>)}</div></section>}

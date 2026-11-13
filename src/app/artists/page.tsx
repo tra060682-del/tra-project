@@ -1,0 +1,4 @@
+import {ArtworkImage} from '@/components/artwork-image';
+import {mediaById} from '@/data/approved-media';
+const artists=[{name:'Abanindranath Tagore',media:'abanindranath',copy:'A historic voice in modern Indian art.'},{name:'Amrita Sher-Gil',media:'amrita-sher-gil',copy:'An enduring modernist perspective.'}];
+export default function Artists(){return <section className="section"><div className="eyebrow">ARTIST DIRECTORY</div><h1>Artists and their stories.</h1><p className="intro">This design-foundation view uses openly licensed heritage references. Verified contemporary artist profiles will continue to come from the existing protected publishing workflow.</p><div className="grid">{artists.map(artist=><article className="card" key={artist.name}><ArtworkImage media={mediaById(artist.media)} ratio="4 / 5"/><div className="caption"><h2>{artist.name}</h2><p>{artist.copy}</p><span className="catalogue-state">Heritage reference</span></div></article>)}</div></section>}
