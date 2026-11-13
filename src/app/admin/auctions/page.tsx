@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import {requireRole} from '@/lib/auth';
+import {requirePermission} from '@/lib/auth';
 import {closeAuctionLot,createAuction,createAuctionLot,setBidderStatus,updateAuctionStatus,updateLotOperations,updatePaymentStatus} from './actions';
 const paymentOptions=['not_requested','link_pending','link_sent','payment_pending','paid','partially_paid','failed','expired','refunded','cancelled'];
 const lotWorkflow=['draft','approved','scheduled','cancelled','disputed'];
 export default async function AuctionAdmin(){
- const {db}=await requireRole(['super_admin','admin']);
+ const {db}=await requirePermission('auctions.manage');
  const [{data:auctions},{data:lots},{data:submissions},{data:bidders},{data:terms},{data:artworks}]=await Promise.all([
   db.from('auctions').select('id,title,status,starts_at,ends_at').order('created_at',{ascending:false}).limit(20),db.from('auction_lots').select('id,auction_id,lot_number,status,current_paise,bid_count,payment_status').order('created_at',{ascending:false}).limit(30),db.from('auction_submissions').select('id,artwork_id,status,artist_note,admin_remarks').order('created_at',{ascending:false}).limit(20),db.from('bidder_eligibility').select('user_id,status,approved_at').order('created_at',{ascending:false}).limit(20),db.from('legal_document_versions').select('id,version').eq('is_published',true).limit(20),db.from('artworks').select('id,title,status').in('status',['approved','published']).limit(50)
  ]);

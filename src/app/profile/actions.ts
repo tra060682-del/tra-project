@@ -1,0 +1,3 @@
+'use server';
+import {revalidatePath} from 'next/cache';import {z} from 'zod';import {requireAuthContext} from '@/lib/auth';
+export async function updateProfile(form:FormData){const input=z.object({displayName:z.string().trim().min(2).max(120),phone:z.string().trim().max(50)}).parse({displayName:form.get('displayName'),phone:form.get('phone')});const {db,user}=await requireAuthContext();const {error}=await db.from('profiles').update({display_name:input.displayName,phone:input.phone||null,updated_at:new Date().toISOString()}).eq('id',user.id);if(error)throw new Error('Your profile could not be updated.');revalidatePath('/profile')}

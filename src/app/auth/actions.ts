@@ -2,6 +2,7 @@
 
 import {redirect} from 'next/navigation';
 import {authErrorSummary, registrationErrorMessage} from '@/lib/auth-errors';
+import {getOptionalAuthContext} from '@/lib/auth';
 import {supabase} from '@/lib/supabase/server';
 
 function value(data:FormData,name:string){return String(data.get(name)??'').trim()}
@@ -43,18 +44,20 @@ export async function registerIntermediary(data:FormData){
 export async function login(data:FormData){
   const email=value(data,'email').toLowerCase();
   const password=value(data,'password');
-  const next=safeNext(value(data,'next'),'/artist');
+  const requested=value(data,'next');
   const db=await supabase();
   const {error}=await db.auth.signInWithPassword({email,password});
   if(error)redirect(destination('/login','error','Email or password was not recognised, or the email has not been verified.'));
-  redirect(next);
+  const context=await getOptionalAuthContext();
+  if(!context||context.accountStatus!=='active'){await db.auth.signOut();redirect(destination('/login','error','This account is not currently permitted to sign in.'))}
+  redirect(safeNext(requested,context.landingPath));
 }
 
 export async function logout(){const db=await supabase();await db.auth.signOut();redirect('/login?message=You+have+been+signed+out.')}
 
 export async function requestPasswordReset(data:FormData){
   const email=value(data,'email').toLowerCase();
-  if(email){const db=await supabase();await db.auth.resetPasswordForEmail(email,{redirectTo:`${siteUrl()}/auth/callback?next=/reset-password`})}
+  if(email){try{const db=await supabase();await db.auth.resetPasswordForEmail(email,{redirectTo:`${siteUrl()}/auth/callback?next=/reset-password`})}catch{console.warn('Password reset request could not be dispatched',{code:'password_reset_unavailable'})}}
   redirect(destination('/forgot-password','message','If an account exists for that email, a reset link is on its way.'));
 }
 

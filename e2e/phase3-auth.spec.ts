@@ -1,0 +1,3 @@
+import {test,expect} from '@playwright/test';
+test('anonymous access to protected workspaces is redirected to login',async({page})=>{for(const route of ['/admin','/artist','/intermediary','/account','/workspace']){await page.goto(route);await expect(page).toHaveURL(/\/login/)}});
+test('recovery request does not disclose whether an account exists',async({page})=>{await page.goto('/forgot-password');await page.getByLabel(/email/i).fill('unknown-phase3@example.invalid');await page.getByRole('button',{name:/send reset link/i}).click();await expect(page.getByText(/if an account exists/i)).toBeVisible()});
