@@ -40,6 +40,10 @@ select pg_temp.assert_true(not public.tra_has_permission('roles.manage','c000000
 -- Anonymous roles have no access to private access-control records.
 select pg_temp.assert_true(not has_table_privilege('anon','public.user_permission_overrides','SELECT'),'anonymous can read overrides');
 select pg_temp.assert_true(not has_table_privilege('anon','public.account_invitations','SELECT'),'anonymous can read invitations');
+select pg_temp.assert_true(not has_table_privilege('anon','public.offers','INSERT'),'anonymous has direct offer insert grant');
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.offers','INSERT'),'browser has direct offer insert grant');
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.payment_events','INSERT'),'browser has direct payment-event insert grant');
+select pg_temp.assert_true(not has_table_privilege('authenticated','public.ledger_entries','UPDATE'),'browser has ledger update grant');
 
 -- Administrative and curator escalation attempts are denied.
 begin;set local role authenticated;select set_config('request.jwt.claim.sub','c0000000-0000-0000-0000-000000000003',true);

@@ -30,6 +30,7 @@ The coherent candidate sequence tested was:
 - Added active-account checks to offer submission and restrictive authenticated policies so suspended users lose private reads as well as writes.
 - Added Advisor enquiry, Finance sales/audit, and permission-based read policies without replacing legacy policies.
 - Made protected permissions (`roles.manage`, `settings.manage`, `integrations.manage`) immune to non-Super-Admin overrides.
+- Replaced inherited broad default privileges on every new Phase 1 table with explicit least-privilege grants.
 - Added active-account guards to additive content, notification, offer, payment and ledger tables.
 - Corrected Phase 1 and Phase 3 rollback dependency order.
 - Made the schema-only restore reproduce source ACLs rather than local Supabase image defaults.

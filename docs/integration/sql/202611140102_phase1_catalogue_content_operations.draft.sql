@@ -198,4 +198,12 @@ create policy notification_deliveries_staff on public.notification_deliveries fo
 create policy analytics_staff on public.analytics_events for select to authenticated using(public.tra_has_permission('reports.view'));
 do $$declare t text;begin foreach t in array array['artist_profile_taxonomies','artwork_taxonomies','artwork_classification_reviews','content_relations','journal_bookmarks','analytics_events','notifications','notification_preferences','notification_deliveries'] loop execute format('create policy phase3_active_account_gate on public.%I as restrictive for all to authenticated using (public.tra_account_is_active()) with check (public.tra_account_is_active())',t);end loop;end$$;
 
+revoke all on public.artist_profile_taxonomies,public.artwork_taxonomies,public.artwork_classification_reviews,public.content_relations,public.journal_bookmarks,public.analytics_events,public.notifications,public.notification_preferences,public.notification_deliveries from anon,authenticated;
+grant select on public.artist_profile_taxonomies,public.artwork_taxonomies,public.content_relations to anon,authenticated;
+grant select,insert,delete on public.journal_bookmarks to authenticated;
+grant select,insert,update,delete on public.artwork_classification_reviews to authenticated;
+grant select on public.analytics_events,public.notification_deliveries to authenticated;
+grant select,update on public.notifications to authenticated;
+grant select,insert,update,delete on public.notification_preferences to authenticated;
+
 commit;

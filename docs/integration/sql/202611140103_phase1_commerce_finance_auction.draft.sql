@@ -159,6 +159,10 @@ create policy bidder_profile_own_insert on public.bidder_profiles for insert to 
 create policy bidder_profile_own_update on public.bidder_profiles for update to authenticated using(user_id=auth.uid()) with check(user_id=auth.uid());
 do $$declare t text;begin foreach t in array array['offers','offer_events','payment_events','ledger_entries','bidder_profiles'] loop execute format('create policy phase3_active_account_gate on public.%I as restrictive for all to authenticated using (public.tra_account_is_active()) with check (public.tra_account_is_active())',t);end loop;end$$;
 
+revoke all on public.offers,public.offer_events,public.payment_events,public.ledger_entries,public.bidder_profiles from anon,authenticated;
+grant select on public.offers,public.offer_events,public.payment_events,public.ledger_entries to authenticated;
+grant select,insert,update on public.bidder_profiles to authenticated;
+
 create or replace function public.submit_offer(p_artwork uuid,p_amount_paise bigint,p_message text default null)
 returns uuid language plpgsql security definer set search_path=public,auth,pg_temp
 as $$
