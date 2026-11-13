@@ -1,4 +1,6 @@
--- DESIGN DRAFT ONLY. DO NOT ADD TO supabase/migrations OR APPLY WITHOUT APPROVAL.
+-- SUPERSEDED DESIGN DRAFT. DO NOT APPLY. Phase 3 migration 202611150101 owns
+-- account status, role permissions, permission overrides and authorization helpers.
+-- Retained only as an historical Phase 1 contract.
 -- Target: development project ocstvctvmychromkcurw only.
 -- Structural intent: additive roles/permissions and account-state enforcement.
 
@@ -6,7 +8,7 @@ begin;
 
 do $$
 begin
-  if current_setting('app.tra_phase1_target', true) <> 'ocstvctvmychromkcurw:approved-development-only' then
+  if current_setting('app.tra_phase1_target', true) is distinct from 'ocstvctvmychromkcurw:approved-development-only' then
     raise exception 'PHASE1_DRAFT_REFUSED';
   end if;
 end $$;

@@ -2,7 +2,7 @@
 -- Depends on 202611150100 being committed separately. Never run against production.
 begin;
 do $$begin
- if current_setting('app.tra_phase3_target',true) <> 'ocstvctvmychromkcurw:approved-development-only' then raise exception 'TRA_PHASE3_TARGET_NOT_APPROVED'; end if;
+ if current_setting('app.tra_phase3_target',true) is distinct from 'ocstvctvmychromkcurw:approved-development-only' then raise exception 'TRA_PHASE3_TARGET_NOT_APPROVED'; end if;
  if to_regclass('public.profiles') is null or to_regclass('public.user_roles') is null or to_regclass('public.audit_events') is null then raise exception 'TRA_PHASE3_PREFLIGHT_FAILED'; end if;
 end$$;
 
@@ -13,7 +13,7 @@ alter table public.profiles add column if not exists status_changed_by uuid refe
 create index if not exists profiles_account_status_idx on public.profiles(account_status,id);
 
 create table if not exists public.role_permissions(
- role public.staff_role not null, permission text not null,
+ role public.tra_role not null, permission text not null,
  created_at timestamptz not null default now(), primary key(role,permission),
  constraint role_permission_name_check check(permission ~ '^[a-z]+(\.[a-z]+)+$')
 );
@@ -25,7 +25,7 @@ create table if not exists public.user_permission_overrides(
  primary key(user_id,permission),constraint permission_override_name_check check(permission ~ '^[a-z]+(\.[a-z]+)+$')
 );
 create table if not exists public.account_invitations(
- id uuid primary key default gen_random_uuid(),email text not null,role public.staff_role not null,
+ id uuid primary key default gen_random_uuid(),email text not null,role public.tra_role not null,
  token_hash text not null unique,status text not null default 'pending' check(status in ('pending','accepted','revoked','expired')),
  expires_at timestamptz not null,created_by uuid not null references auth.users(id) on delete restrict,
  accepted_by uuid references auth.users(id) on delete restrict,accepted_at timestamptz,revoked_at timestamptz,
@@ -47,6 +47,7 @@ create or replace function public.tra_account_is_active(p_user uuid default auth
 create or replace function public.tra_has_permission(p_permission text,p_user uuid default auth.uid()) returns boolean language sql stable security definer set search_path='' as $$
  select public.tra_account_is_active(p_user) and
  not exists(select 1 from public.user_permission_overrides where user_id=p_user and permission=p_permission and effect='revoke' and (expires_at is null or expires_at>clock_timestamp())) and
+ (p_permission not in ('roles.manage','settings.manage','integrations.manage') or exists(select 1 from public.user_roles where user_id=p_user and role='super_admin')) and
  (exists(select 1 from public.user_roles where user_id=p_user and role='super_admin') or
   exists(select 1 from public.user_permission_overrides where user_id=p_user and permission=p_permission and effect='grant' and (expires_at is null or expires_at>clock_timestamp())) or
   exists(select 1 from public.user_roles ur join public.role_permissions rp using(role) where ur.user_id=p_user and rp.permission=p_permission))
@@ -62,10 +63,15 @@ $$;
 revoke all on function public.tra_account_is_active(uuid),public.tra_has_permission(text,uuid),public.tra_representation_allows(uuid,text,uuid) from public;
 grant execute on function public.tra_account_is_active(uuid),public.tra_has_permission(text,uuid),public.tra_representation_allows(uuid,text,uuid) to authenticated,service_role;
 
-create or replace function public.tra_require_active_actor() returns trigger language plpgsql security definer set search_path='' as $$begin if auth.uid() is not null and not public.tra_account_is_active(auth.uid()) then raise exception 'ACCOUNT_INACTIVE'; end if;if tg_op='DELETE' then return old;end if;return new;end$$;
-do $$declare t text;begin foreach t in array array['user_roles','artist_profiles','intermediary_profiles','artist_representations','artworks','auction_submissions','auction_watchlists','bidder_eligibility','proxy_bids','bid_requests','orders','payments'] loop if to_regclass('public.'||t) is not null then execute format('drop trigger if exists tra_active_actor_guard on public.%I',t);execute format('create trigger tra_active_actor_guard before insert or update or delete on public.%I for each row execute function public.tra_require_active_actor()',t);end if;end loop;end$$;
+-- Restrictive policies compose with every legacy permissive policy so an inactive
+-- authenticated account cannot read or mutate private records. Anonymous public
+-- catalogue policies are unaffected because this gate applies to authenticated only.
+do $$declare t text;begin foreach t in array array['user_roles','profiles','artist_profiles','intermediary_profiles','artist_representations','artworks','auction_submissions','auction_watchlists','bidder_eligibility','auction_proxy_bids','auction_bid_requests','sales','buyer_enquiries','audit_events'] loop if to_regclass('public.'||t) is not null then execute format('drop policy if exists phase3_active_account_gate on public.%I',t);execute format('create policy phase3_active_account_gate on public.%I as restrictive for all to authenticated using (public.tra_account_is_active()) with check (public.tra_account_is_active())',t);end if;end loop;end$$;
 
-create or replace function public.tra_manage_user_role(p_user_id uuid,p_role public.staff_role,p_operation text,p_reason text) returns void language plpgsql security definer set search_path=public,auth,pg_temp as $$
+create or replace function public.tra_require_active_actor() returns trigger language plpgsql security definer set search_path='' as $$begin if auth.uid() is not null and not public.tra_account_is_active(auth.uid()) then raise exception 'ACCOUNT_INACTIVE'; end if;if tg_table_name in ('auction_proxy_bids','auction_bid_requests') and exists(select 1 from public.user_roles where user_id=auth.uid() and role='finance') then raise exception 'OPERATIONAL_ROLE_CANNOT_BID';end if;if tg_op='DELETE' then return old;end if;return new;end$$;
+do $$declare t text;begin foreach t in array array['user_roles','artist_profiles','intermediary_profiles','artist_representations','artworks','auction_submissions','auction_watchlists','bidder_eligibility','auction_proxy_bids','auction_bid_requests','sales'] loop if to_regclass('public.'||t) is not null then execute format('drop trigger if exists tra_active_actor_guard on public.%I',t);execute format('create trigger tra_active_actor_guard before insert or update or delete on public.%I for each row execute function public.tra_require_active_actor()',t);end if;end loop;end$$;
+
+create or replace function public.tra_manage_user_role(p_user_id uuid,p_role public.tra_role,p_operation text,p_reason text) returns void language plpgsql security definer set search_path=public,auth,pg_temp as $$
 declare actor uuid:=auth.uid();begin
  if not public.tra_has_permission('roles.manage',actor) then raise exception 'PERMISSION_DENIED'; end if;
  if p_operation not in ('grant','revoke') or char_length(btrim(p_reason)) not between 10 and 1000 then raise exception 'INVALID_REQUEST'; end if;
@@ -96,7 +102,7 @@ declare actor uuid:=auth.uid();r public.artist_representations%rowtype;begin
  update public.artist_representations set status='ended',ends_at=least(coalesce(ends_at,clock_timestamp()),clock_timestamp()),revoked_at=clock_timestamp(),revoked_by=actor,revocation_reason=btrim(p_reason) where id=p_representation_id;
  insert into public.audit_events(actor_id,action,entity_type,entity_id,metadata) values(actor,'representation.revoked','artist_representation',p_representation_id,jsonb_build_object('reason',btrim(p_reason)));
 end$$;
-create or replace function public.tra_create_invitation(p_email text,p_role public.staff_role,p_expires_in_hours integer) returns text language plpgsql security definer set search_path=public,auth,extensions,pg_temp as $$
+create or replace function public.tra_create_invitation(p_email text,p_role public.tra_role,p_expires_in_hours integer) returns text language plpgsql security definer set search_path=public,auth,extensions,pg_temp as $$
 declare actor uuid:=auth.uid();token text:=encode(gen_random_bytes(32),'hex');invitation uuid;begin
  if not public.tra_has_permission('roles.manage',actor) then raise exception 'PERMISSION_DENIED'; end if;
  if p_role='super_admin' then raise exception 'SUPER_ADMIN_INVITATION_FORBIDDEN'; end if;
@@ -105,14 +111,17 @@ declare actor uuid:=auth.uid();token text:=encode(gen_random_bytes(32),'hex');in
  insert into public.audit_events(actor_id,action,entity_type,entity_id,metadata) values(actor,'invitation.created','account_invitation',invitation,jsonb_build_object('role',p_role));return token;
 end$$;
 create or replace function public.tra_revoke_invitation(p_invitation_id uuid,p_reason text) returns void language plpgsql security definer set search_path=public,auth,pg_temp as $$declare actor uuid:=auth.uid();begin if not public.tra_has_permission('roles.manage',actor) or char_length(btrim(p_reason)) not between 10 and 1000 then raise exception 'PERMISSION_DENIED';end if;update public.account_invitations set status='revoked',revoked_at=clock_timestamp() where id=p_invitation_id and status='pending';if not found then raise exception 'INVITATION_NOT_PENDING';end if;insert into public.audit_events(actor_id,action,entity_type,entity_id,metadata) values(actor,'invitation.revoked','account_invitation',p_invitation_id,jsonb_build_object('reason',btrim(p_reason)));end$$;
-create or replace function public.tra_accept_invitation(p_token text) returns public.staff_role language plpgsql security definer set search_path=public,auth,extensions,pg_temp as $$declare actor uuid:=auth.uid();inv public.account_invitations%rowtype;actor_email text;begin if not public.tra_account_is_active(actor) then raise exception 'ACCOUNT_INACTIVE';end if;select lower(email) into actor_email from auth.users where id=actor and email_confirmed_at is not null;select * into inv from public.account_invitations where status='pending' and expires_at>clock_timestamp() and token_hash=crypt(p_token,token_hash) for update;if not found or actor_email is distinct from inv.email then raise exception 'INVITATION_INVALID';end if;if inv.role='super_admin' then raise exception 'SUPER_ADMIN_INVITATION_FORBIDDEN';end if;insert into public.user_roles(user_id,role) values(actor,inv.role) on conflict do nothing;update public.account_invitations set status='accepted',accepted_by=actor,accepted_at=clock_timestamp() where id=inv.id;insert into public.audit_events(actor_id,action,entity_type,entity_id,metadata) values(actor,'invitation.accepted','account_invitation',inv.id,jsonb_build_object('role',inv.role));return inv.role;end$$;
-revoke all on function public.tra_manage_user_role(uuid,public.staff_role,text,text),public.tra_set_account_status(uuid,public.account_status,text),public.tra_revoke_representation(uuid,text),public.tra_create_invitation(text,public.staff_role,integer),public.tra_revoke_invitation(uuid,text),public.tra_accept_invitation(text) from public;
-grant execute on function public.tra_manage_user_role(uuid,public.staff_role,text,text),public.tra_set_account_status(uuid,public.account_status,text),public.tra_revoke_representation(uuid,text),public.tra_create_invitation(text,public.staff_role,integer),public.tra_revoke_invitation(uuid,text),public.tra_accept_invitation(text) to authenticated;
+create or replace function public.tra_accept_invitation(p_token text) returns public.tra_role language plpgsql security definer set search_path=public,auth,extensions,pg_temp as $$declare actor uuid:=auth.uid();inv public.account_invitations%rowtype;actor_email text;begin if not public.tra_account_is_active(actor) then raise exception 'ACCOUNT_INACTIVE';end if;select lower(email) into actor_email from auth.users where id=actor and email_confirmed_at is not null;select * into inv from public.account_invitations where status='pending' and expires_at>clock_timestamp() and token_hash=crypt(p_token,token_hash) for update;if not found or actor_email is distinct from inv.email then raise exception 'INVITATION_INVALID';end if;if inv.role='super_admin' then raise exception 'SUPER_ADMIN_INVITATION_FORBIDDEN';end if;insert into public.user_roles(user_id,role) values(actor,inv.role) on conflict do nothing;update public.account_invitations set status='accepted',accepted_by=actor,accepted_at=clock_timestamp() where id=inv.id;insert into public.audit_events(actor_id,action,entity_type,entity_id,metadata) values(actor,'invitation.accepted','account_invitation',inv.id,jsonb_build_object('role',inv.role));return inv.role;end$$;
+revoke all on function public.tra_manage_user_role(uuid,public.tra_role,text,text),public.tra_set_account_status(uuid,public.account_status,text),public.tra_revoke_representation(uuid,text),public.tra_create_invitation(text,public.tra_role,integer),public.tra_revoke_invitation(uuid,text),public.tra_accept_invitation(text) from public;
+grant execute on function public.tra_manage_user_role(uuid,public.tra_role,text,text),public.tra_set_account_status(uuid,public.account_status,text),public.tra_revoke_representation(uuid,text),public.tra_create_invitation(text,public.tra_role,integer),public.tra_revoke_invitation(uuid,text),public.tra_accept_invitation(text) to authenticated;
 
 alter table public.role_permissions enable row level security;alter table public.user_permission_overrides enable row level security;alter table public.account_invitations enable row level security;
 create policy role_permissions_inspect on public.role_permissions for select to authenticated using(public.tra_has_permission('roles.manage') or exists(select 1 from public.user_roles where user_id=auth.uid() and role=role_permissions.role));
 create policy overrides_inspect on public.user_permission_overrides for select to authenticated using(user_id=auth.uid() or public.tra_has_permission('roles.manage'));
 create policy invitations_manage_read on public.account_invitations for select to authenticated using(public.tra_has_permission('roles.manage'));
+create policy phase3_enquiries_permission_read on public.buyer_enquiries for select to authenticated using(public.tra_has_permission('enquiries.manage'));
+create policy phase3_audit_permission_read on public.audit_events for select to authenticated using(public.tra_has_permission('audit.view'));
+create policy phase3_sales_permission_read on public.sales for select to authenticated using(public.tra_has_permission('orders.manage'));
 revoke all on public.role_permissions,public.user_permission_overrides,public.account_invitations from anon,authenticated;
 grant select on public.role_permissions,public.user_permission_overrides,public.account_invitations to authenticated;
 commit;

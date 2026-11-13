@@ -16,6 +16,7 @@
     "test:database": "node scripts/database-rehearsal.mjs",
     "test:auction-database": "node scripts/auction-database-rehearsal.mjs",
     "test:phase1-database": "node scripts/phase1-database-rehearsal.mjs",
+    "test:phase35-database": "node scripts/phase35-database-rehearsal.mjs",
     "test:development-auth": "node scripts/development-auth-smoke.mjs",
     "cleanup:development-auth": "node scripts/cleanup-development-synthetic-users.mjs",
     "test:smoke": "node scripts/smoke.mjs",

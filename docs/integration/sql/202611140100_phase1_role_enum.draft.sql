@@ -1,7 +1,7 @@
 -- DESIGN DRAFT ONLY. DO NOT ADD TO supabase/migrations OR APPLY WITHOUT APPROVAL.
 -- Kept separate because newly added PostgreSQL enum values must commit before later use.
 do $$ begin
-  if current_setting('app.tra_phase1_target', true) <> 'ocstvctvmychromkcurw:approved-development-only' then
+  if current_setting('app.tra_phase1_target', true) is distinct from 'ocstvctvmychromkcurw:approved-development-only' then
     raise exception 'PHASE1_DRAFT_REFUSED';
   end if;
 end $$;

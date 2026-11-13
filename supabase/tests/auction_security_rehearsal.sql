@@ -6,6 +6,8 @@ insert into auth.users(instance_id,id,aud,role,email,encrypted_password,email_co
 ('00000000-0000-0000-0000-000000000000','a0000000-0000-0000-0000-000000000002','authenticated','authenticated','auction.artist@example.test',crypt('Synthetic-Only-1',gen_salt('bf')),now(),'{}','{}',now(),now()),
 ('00000000-0000-0000-0000-000000000000','a0000000-0000-0000-0000-000000000003','authenticated','authenticated','auction.bidder1@example.test',crypt('Synthetic-Only-1',gen_salt('bf')),now(),'{}','{}',now(),now()),
 ('00000000-0000-0000-0000-000000000000','a0000000-0000-0000-0000-000000000004','authenticated','authenticated','auction.bidder2@example.test',crypt('Synthetic-Only-1',gen_salt('bf')),now(),'{}','{}',now(),now());
+insert into public.profiles(id,display_name) select id,'Synthetic auction user' from auth.users where id::text like 'a0000000-%' on conflict(id) do nothing;
+insert into public.platform_settings(key,value,description) values('auction_real_money_bidding','false'::jsonb,'Synthetic rehearsal kill switch') on conflict(key) do update set value=excluded.value;
 insert into public.user_roles(user_id,role) values
 ('a0000000-0000-0000-0000-000000000001','admin'),('a0000000-0000-0000-0000-000000000002','artist');
 insert into public.artist_profiles(id,user_id,display_name,status,public_visible) values

@@ -5,7 +5,7 @@
 
 begin;
 do $$ begin
-  if current_setting('app.tra_phase1_target', true) <> 'ocstvctvmychromkcurw:approved-development-only' then
+  if current_setting('app.tra_phase1_target', true) is distinct from 'ocstvctvmychromkcurw:approved-development-only' then
     raise exception 'PHASE1_DRAFT_REFUSED';
   end if;
 end $$;
@@ -196,5 +196,6 @@ create policy notifications_own_update on public.notifications for update to aut
 create policy notification_preferences_own on public.notification_preferences to authenticated using(user_id=auth.uid()) with check(user_id=auth.uid());
 create policy notification_deliveries_staff on public.notification_deliveries for select to authenticated using(public.tra_has_permission('audit.view'));
 create policy analytics_staff on public.analytics_events for select to authenticated using(public.tra_has_permission('reports.view'));
+do $$declare t text;begin foreach t in array array['artist_profile_taxonomies','artwork_taxonomies','artwork_classification_reviews','content_relations','journal_bookmarks','analytics_events','notifications','notification_preferences','notification_deliveries'] loop execute format('create policy phase3_active_account_gate on public.%I as restrictive for all to authenticated using (public.tra_account_is_active()) with check (public.tra_account_is_active())',t);end loop;end$$;
 
 commit;

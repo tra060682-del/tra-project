@@ -4,18 +4,15 @@
 
 begin;
 do $$ begin
-  if current_setting('app.tra_phase1_rollback', true) <> 'ocstvctvmychromkcurw:approved-development-rollback' then
+  if current_setting('app.tra_phase1_rollback', true) is distinct from 'ocstvctvmychromkcurw:approved-development-rollback' then
     raise exception 'PHASE1_ROLLBACK_REFUSED';
   end if;
 end $$;
 
 drop function if exists public.submit_offer(uuid,bigint,text);
-drop function if exists public.tra_guard_protected_permission();
-drop function if exists public.tra_has_permission(text);
-drop function if exists public.tra_has_role(public.tra_role);
-drop function if exists public.tra_ledger_immutable();
 
 drop table if exists public.ledger_entries;
+drop function if exists public.tra_ledger_immutable();
 drop table if exists public.payment_events;
 drop table if exists public.offer_events;
 drop table if exists public.offers;
@@ -29,8 +26,6 @@ drop table if exists public.content_relations;
 drop table if exists public.artwork_classification_reviews;
 drop table if exists public.artwork_taxonomies;
 drop table if exists public.artist_profile_taxonomies;
-drop table if exists public.user_permission_overrides;
-drop table if exists public.role_permissions;
 
 alter table public.auction_lots
   drop column if exists source_record_id,
@@ -99,9 +94,11 @@ alter table public.artist_profiles
   drop column if exists participation,
   drop column if exists public_reference;
 alter table public.profiles
-  drop column if exists account_status,
   drop column if exists last_seen_at,
   drop column if exists metadata;
+
+-- Phase 3 owns account_status, role_permissions, user_permission_overrides and
+-- the tra_* authorization helpers. Its rollback runs after this rollback.
 
 -- The reviewed rollback must restore the exact pre-migration taxonomy_type constraint hash
 -- if the approved forward migration broadened its value list.

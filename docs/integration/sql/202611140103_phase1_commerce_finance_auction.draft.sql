@@ -5,7 +5,7 @@
 
 begin;
 do $$ begin
-  if current_setting('app.tra_phase1_target', true) <> 'ocstvctvmychromkcurw:approved-development-only' then
+  if current_setting('app.tra_phase1_target', true) is distinct from 'ocstvctvmychromkcurw:approved-development-only' then
     raise exception 'PHASE1_DRAFT_REFUSED';
   end if;
 end $$;
@@ -157,6 +157,7 @@ create policy ledger_finance_read on public.ledger_entries for select to authent
 create policy bidder_profile_own_read on public.bidder_profiles for select to authenticated using(user_id=auth.uid() or public.tra_has_permission('bidders.manage'));
 create policy bidder_profile_own_insert on public.bidder_profiles for insert to authenticated with check(user_id=auth.uid());
 create policy bidder_profile_own_update on public.bidder_profiles for update to authenticated using(user_id=auth.uid()) with check(user_id=auth.uid());
+do $$declare t text;begin foreach t in array array['offers','offer_events','payment_events','ledger_entries','bidder_profiles'] loop execute format('create policy phase3_active_account_gate on public.%I as restrictive for all to authenticated using (public.tra_account_is_active()) with check (public.tra_account_is_active())',t);end loop;end$$;
 
 create or replace function public.submit_offer(p_artwork uuid,p_amount_paise bigint,p_message text default null)
 returns uuid language plpgsql security definer set search_path=public,auth,pg_temp
@@ -164,6 +165,7 @@ as $$
 declare v_user uuid:=auth.uid(); v_id uuid;
 begin
   if v_user is null then raise exception 'AUTHENTICATION_REQUIRED'; end if;
+  if not public.tra_account_is_active(v_user) then raise exception 'ACCOUNT_INACTIVE'; end if;
   if p_amount_paise<=0 then raise exception 'INVALID_AMOUNT'; end if;
   perform pg_advisory_xact_lock(hashtextextended('offer:'||p_artwork::text||':'||v_user::text,0));
   if not exists(select 1 from public.artworks where id=p_artwork and status='published') then raise exception 'ARTWORK_NOT_AVAILABLE'; end if;
@@ -175,6 +177,10 @@ end $$;
 
 revoke all on function public.submit_offer(uuid,bigint,text) from public;
 grant execute on function public.submit_offer(uuid,bigint,text) to authenticated;
+
+-- Reuse the Phase 3 account-status guard on additive commercial tables. Trusted
+-- service operations have no auth.uid(); authenticated users must remain active.
+do $$declare t text;begin foreach t in array array['offers','offer_events','payment_events','ledger_entries'] loop execute format('drop trigger if exists tra_active_actor_guard on public.%I',t);execute format('create trigger tra_active_actor_guard before insert or update or delete on public.%I for each row execute function public.tra_require_active_actor()',t);end loop;end$$;
 
 -- Payment event ingestion and offer acceptance require provider/state-specific reviewed RPCs.
 -- No authenticated or anon INSERT/UPDATE/DELETE policies are intentionally created for
