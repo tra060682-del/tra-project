@@ -2,7 +2,7 @@
 
 ## Baseline and compatibility
 
-Read-only inspection on 17 November 2026 confirmed exactly **39 public tables** in development, seven applied repository migrations ending `202611130002`, no Phase 1/3 draft objects, and the previously imported `emergent_staging.id_map` at 400 rows. No staged record was read into the application or promoted. No remote mutation was performed.
+Read-only inspection on 14 November 2026 confirmed exactly **39 public tables** in development, seven applied repository migrations ending `202611130002`, no Phase 1/3 draft objects, and the previously imported `emergent_staging.id_map` at 400 rows. No staged record was read into the application or promoted. No remote mutation was performed.
 
 `202611170101_phase6a_commerce.draft.sql` is an approval-gated proposal, not an applied migration. It requires the current baseline followed by the approved Phase 3 RBAC migration. The earlier broad Phase 1 commerce design and any historical `202611140103` draft are superseded for commerce by this file; they must not be applied together.
 
