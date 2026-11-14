@@ -1,0 +1,210 @@
+export const approvedMediaRegister=[
+  {
+    "file": "b18bedec1d96b1.jpg",
+    "sha256": "495bf842207a54aac476ab24e902cbeb6d88ba71377be19cc11c6a2ff5966a82",
+    "bytes": 694950,
+    "credit": "Rohini — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jadupatua_paintings_and_Madhubani_paintings.JPG"
+  },
+  {
+    "file": "72380a57b87dcf.jpg",
+    "sha256": "626d02f331a1702a6c4888f895a483d561d7b314f73375098ed288a887ea7985",
+    "bytes": 479282,
+    "credit": "ProbuddhoG. — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:House_of_Nandalal_Bose_3.JPG"
+  },
+  {
+    "file": "649df1a89f6232.jpg",
+    "sha256": "f9e13d71f230e707d455fbad0ab87acb554f5710688531d117b724d4e7097a01",
+    "bytes": 644946,
+    "credit": "Akhilan — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kerala_Temple_Mural_Replica.jpg"
+  },
+  {
+    "file": "ab5f6e65a91a1f.jpg",
+    "sha256": "a53c1b315f58b606b0baedc67d57662a2ba87dc48824df811ea9fc7086e36fd0",
+    "bytes": 1129646,
+    "credit": "Biswarup Ganguly — via Wikimedia Commons",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jogen_Chowdhury_-_Kolkata_2012-10-03_0468.JPG"
+  },
+  {
+    "file": "6fd1e4773aeb14.jpg",
+    "sha256": "174fd120be4891ebd6f6d28f41956e186f2e3313858b4d63b4f9266114479c13",
+    "bytes": 615814,
+    "credit": "Marajozkee — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Statue_of_Jamini_Roy.jpg"
+  },
+  {
+    "file": "bd0ee1b678ed54.jpg",
+    "sha256": "93238decdcf4563ffd6491b481db6a570d15beed97dd7c558731104345ef224e",
+    "bytes": 576936,
+    "credit": "Anilbhardwajnoida — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kalamkari_painting.jpg"
+  },
+  {
+    "file": "0b0839882759ae.jpg",
+    "sha256": "9079119a73eae3e7b6d3fc516d76d99ea55a5257e6ff9ad2fc6911a477f2d3f8",
+    "bytes": 2058863,
+    "credit": "Sumita Roy Dutta — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Saura_painting_of_Odisha_DSCN1052_05.jpg"
+  },
+  {
+    "file": "663dc7d4845174.jpg",
+    "sha256": "1a813fc2b38f90ea29fd036862989a0f5428332cc1dec56f376ae5f470e88657",
+    "bytes": 1798959,
+    "credit": "Omrmankar — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Warli_painting.jpg"
+  },
+  {
+    "file": "c2cc7aefa5c3b6.jpg",
+    "sha256": "bc35fb5dc3381d79f610d4aa1d2ecbadf560f7e88623e37b434135066823f842",
+    "bytes": 469498,
+    "credit": "Chetan Nikam — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:SH_Raza_2.JPG"
+  },
+  {
+    "file": "7f46a00094cbb0.jpg",
+    "sha256": "852d4245a4b3d8fb90fd7c27659760d9cebc7e3a9df7219e732d31086d922765",
+    "bytes": 837114,
+    "credit": "Rabindranath Tagore — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:A_human_face,_painting_by_Rabindranath_Tagore,_Indian_Museum,_Kolkata.jpg"
+  },
+  {
+    "file": "c56603c89caa24.jpg",
+    "sha256": "044a583fee0a904ee0954f2f8c742c8c641b784f61cdcb0da8de67781a29dc77",
+    "bytes": 1311452,
+    "credit": "anonymous — via Wikimedia Commons",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:India,_Calcutta,_Kalighat_painting,_19th_century_-_Trivikramapada_(Three_Steps_of_Vishnu)_-_2003.165_-_Cleveland_Museum_of_Art.jpg"
+  },
+  {
+    "file": "a7046fd3c5de07.jpg",
+    "sha256": "ae38ba9f67f3d69483c268f1d0af3cf7fa5b160b6cd2debec8e914b3536de302",
+    "bytes": 321188,
+    "credit": "Nomu420 — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pabuji_ka_phad_02.JPG"
+  },
+  {
+    "file": "ac69d36caeea57.jpg",
+    "sha256": "612c015acf976548a1ee55fc219fdde65aa518dfb10ba2b69362dbeb170c577a",
+    "bytes": 1697518,
+    "credit": "Raja Ravi Varma — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Raja_Ravi_Varma_-_Portrait_of_a_Lady_-_Google_Art_Project.jpg"
+  },
+  {
+    "file": "94be03e7ae4a92.jpg",
+    "sha256": "732d71e5bc53e2a2b42409e0568690a8831d08c861fa268c4864431c440533da",
+    "bytes": 2945267,
+    "credit": "Govardhan (attribution) — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Govardhan._Jahangir_Visiting_the_Ascetic_Jadrup._ca._1616-20,_Musee_Guimet,_Paris.jpg"
+  },
+  {
+    "file": "a058ddd5129ca2.jpg",
+    "sha256": "02ba6fdbc3340eeff1b2956be487b014913cc803cd1d58faf1dd792926fe94c2",
+    "bytes": 1983234,
+    "credit": "Iramuthusamy — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tanjore_Painting_Vinayaka_2.jpg"
+  },
+  {
+    "file": "e0ab8eb652bf81.jpg",
+    "sha256": "22a2b262e965ca687a23727169b6ad3788e1907f0626733d8bcdd40ee112fa7c",
+    "bytes": 360177,
+    "credit": "Rajeshjena453 — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pattachitra_on_saree.jpg"
+  },
+  {
+    "file": "c446d827f3dfa2.jpg",
+    "sha256": "e7a56a12605ef1a3ccc9394fba614e831994d3c84a5cf38696ecb8614b653d35",
+    "bytes": 464058,
+    "credit": "Abanindranath Tagore — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Bharat_Mata_by_Abanindranath_Tagore.jpg"
+  },
+  {
+    "file": "bd0f6914bc1daa.jpg",
+    "sha256": "3b58745e3e8d8cbe8b3c9ddae8a446368428dfab166f40261340554d4fffc816",
+    "bytes": 485995,
+    "credit": "Unknown Rajasthani artist — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Pichwai_by_unknown_Rajasthani_artist.jpg"
+  },
+  {
+    "file": "d3cd3b44af03f7.jpg",
+    "sha256": "3356a270839a35142415707fb0fddfdd1f70ccea1a4f48938473ca4453f85fda",
+    "bytes": 160550,
+    "credit": "Unknown authorUnknown author — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Abanindranath_Tagore_photo.jpg"
+  },
+  {
+    "file": "9ee20e2b8d588d.jpg",
+    "sha256": "27ec01bec027de253e734cc5e807cebed364a2154b9c27a376e603c2e95c4e8a",
+    "bytes": 407193,
+    "credit": "Aadrit28 — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Krishna_demanding_moon_from_mother_Yashoda.jpg"
+  },
+  {
+    "file": "3011e65ef1199f.jpg",
+    "sha256": "74f5317a54302e156866859def993d99acd8fe21d239483ab3731ac4b947b835",
+    "bytes": 804383,
+    "credit": "Abrsinha — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Husain_with_Rammanohar_(cropped).jpg"
+  },
+  {
+    "file": "04a304ebe342d0.jpg",
+    "sha256": "bb14caf08cabf34c19b24c7d4fc63b03a94dd50a507d96792b55636b85f7ef0b",
+    "bytes": 909574,
+    "credit": "Unknown authorUnknown author  probably Umrao Singh Sher-Gil  (1870–1954) — via Wikimedia Commons",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Amrita_Sher-Gil_2.jpg"
+  },
+  {
+    "file": "cd47e0226239ad.jpg",
+    "sha256": "d104903d07afd4ad0a83c9ad01174f68bad1db3d18a71c0daa23d69eb1e89d41",
+    "bytes": 228012,
+    "credit": "KSRadhakrishnan — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Prof._KG_Subramanyan_viewing_Liminal_Figures_-_Liminal_Space,_Birla_Academy,_Kolkata,_2008.jpg"
+  },
+  {
+    "file": "2f9a72161459dc.jpg",
+    "sha256": "aa0df7dc73afa9d37c724c58026b5f1ef0057b7ac626376f8c6f6fd35de53079",
+    "bytes": 484379,
+    "credit": "Roboture — via Wikimedia Commons",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gond_Painting.JPG"
+  },
+  {
+    "file": "28b53cc5ff55c8.jpg",
+    "sha256": "01d71992f032f33ec148f6a705d3b52f7337d1d166882eced792db9f21fa83c7",
+    "bytes": 216262,
+    "credit": "Fredericknoronha — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Indian_artist_of_Goan_origin,_Francis_Newton_Souza.jpg"
+  },
+  {
+    "file": "8fcdaa98e624e4.jpg",
+    "sha256": "787ea9e7b5a9b3904d1e2cc674d050f8b0fdd517754500fa7df87d6d44d281be",
+    "bytes": 1743594,
+    "credit": "Tpsn98290 — via Wikimedia Commons",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Maharaja_Naru_Singh.jpg"
+  }
+] as const;

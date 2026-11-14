@@ -24,6 +24,7 @@
     "test:development-auth": "node scripts/development-auth-smoke.mjs",
     "cleanup:development-auth": "node scripts/cleanup-development-synthetic-users.mjs",
     "test:smoke": "node scripts/smoke.mjs",
+    "test:catalogue-parity": "node scripts/catalogue-parity-test.mjs",
     "migration:drift": "node scripts/compare-inventory.mjs",
     "verify": "npm run typecheck && npm test",
     "ci": "npm run verify && npm run build",

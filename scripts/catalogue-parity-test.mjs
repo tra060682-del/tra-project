@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import {chromium} from 'playwright';
+
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+await page.goto('http://localhost:3000/artworks?preview=approved-media',{waitUntil:'networkidle'});
+assert.equal(await page.locator('h1').innerText(),'Browse original art');
+assert.equal(await page.getByTestId('browse-result-count').innerText(),'26 works');
+assert.equal(await page.getByTestId('browse-grid').locator('article').count(),12);
+await page.getByTestId('browse-load-more').click();
+assert.equal(await page.getByTestId('browse-grid').locator('article').count(),24);
+await page.getByTestId('browse-search-input').fill('Tagore');await page.getByTestId('browse-search-input').press('Enter');
+assert.match(await page.getByTestId('browse-result-count').innerText(),/^[1-9]\d* works?$/);
+await page.getByTestId('browse-clear-filters').click();await page.waitForURL(/preview=approved-media/);
+await page.getByTestId('filter-artform-madhubani').click();await page.waitForURL(/artform=Madhubani/);
+assert.equal(await page.getByTestId('browse-result-count').innerText(),'1 work');
+await page.getByTestId('filter-artform-gond').click();await page.waitForURL(/artform=Madhubani.*artform=Gond|artform=Gond.*artform=Madhubani/);assert.equal(await page.getByTestId('browse-result-count').innerText(),'2 works');
+await page.getByTestId('filters-clear').click();await page.waitForURL(url=>!url.searchParams.has('artform'));assert.equal(await page.getByTestId('browse-result-count').innerText(),'26 works');
+await page.getByTestId('category-nav-printmaking').click();await page.waitForURL(/category=printmaking/);assert.equal(await page.getByTestId('browse-result-count').innerText(),'0 works');
+await page.getByTestId('category-nav-printmaking').click();await page.waitForURL(url=>!url.searchParams.has('category'));assert.equal(await page.getByTestId('browse-result-count').innerText(),'26 works');
+await page.getByTestId('browse-sort-select').selectOption('newest');await page.waitForURL(/sort=newest/);
+await Promise.all([page.waitForURL(/\/artworks\/00000000-/),page.getByTestId('browse-grid').locator('article').first().locator('a').click()]);assert.match(await page.locator('main').innerText(),/DEVELOPMENT REFERENCE|Development reference/i);const fixtureUrl=new URL(page.url());fixtureUrl.search='';assert.equal((await page.request.get(fixtureUrl.toString())).status(),404);
+const mobile=await browser.newPage({viewport:{width:390,height:844}});await mobile.goto('http://localhost:3000/artworks?preview=approved-media',{waitUntil:'networkidle'});await mobile.getByTestId('browse-mobile-filters-button').click();assert.equal(await mobile.getByRole('dialog',{name:'Catalogue filters'}).isVisible(),true);assert.equal(await mobile.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth),0);
+await browser.close();
+console.log('catalogue parity browser checks: 19 passed');
