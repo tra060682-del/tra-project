@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+const read=path=>readFile(path,'utf8');
+test('all five primary dashboards use the shared premium layout',async()=>{for(const path of ['src/app/admin/page.tsx','src/app/artist/page.tsx','src/app/intermediary/page.tsx','src/app/account/page.tsx'])assert.match(await read(path),/DashboardLayout/);const admin=await read('src/app/admin/page.tsx');assert.match(admin,/Super Admin/);assert.match(admin,/Admin/)});
+test('unsupported dashboard operations have accurate feature states',async()=>{const source=(await Promise.all(['src/app/admin/page.tsx','src/app/admin/auctions/page.tsx','src/app/artist/page.tsx','src/app/intermediary/page.tsx','src/app/account/page.tsx'].map(read))).join('\n');for(const label of ['Preview Only','Blocked','Functional with Limitations'])assert.match(source,new RegExp(label));assert.doesNotMatch(source,/mock winning|payment succeeded|email sent/i)});
+test('finance users remain unable to bid',async()=>{assert.match(await read('src/app/admin/finance/page.tsx'),/expressly prohibited from bidding/);assert.match(await read('src/lib/rbac.ts'),/mayBid\(roles.*!roles\.includes\('finance'\)/)});
+test('dashboard CSS includes desktop tablet and mobile foundations',async()=>{const css=await read('src/app/design-system.css');for(const token of ['dashboard-feature-grid','dashboard-two-column','max-width:900px','max-width:620px'])assert.match(css,new RegExp(token))});
+
