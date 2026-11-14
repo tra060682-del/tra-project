@@ -1,0 +1,9 @@
+-- Read-only verification for the Phase 6A proposal.
+select count(*) as public_table_count from pg_tables where schemaname='public';
+select expected.name,to_regclass('public.'||expected.name) is not null as present
+from (values ('wishlist_items'),('recently_viewed_artworks'),('shopping_bags'),('shopping_bag_items'),('offers'),('offer_events'),('artwork_reservations'),('payment_intents'),('payment_attempts'),('payment_events'),('refund_requests'),('financial_ledger_entries'),('intermediary_commissions'),('settlement_events'),('shipment_events'),('certificate_events'),('notifications'),('notification_preferences'),('notification_deliveries'),('private_media_assets'),('private_media_access_events'),('operational_exceptions')) expected(name);
+select tablename,rowsecurity from pg_tables where schemaname='public' and tablename in ('wishlist_items','offers','artwork_reservations','payment_intents','financial_ledger_entries','notifications','private_media_assets','operational_exceptions') order by tablename;
+select table_name,privilege_type,grantee from information_schema.role_table_grants where table_schema='public' and table_name in ('offers','payment_events','financial_ledger_entries','private_media_assets') and grantee in ('anon','authenticated') order by table_name,grantee,privilege_type;
+select proname,prosecdef from pg_proc join pg_namespace n on n.oid=pronamespace where n.nspname='public' and proname like 'tra_%' and proname in ('tra_toggle_wishlist','tra_record_recent_view','tra_change_shopping_bag','tra_create_offer','tra_transition_offer','tra_create_artwork_reservation','tra_request_refund','tra_post_ledger_transaction','tra_verify_certificate') order by proname;
+select tgname,tgrelid::regclass from pg_trigger where not tgisinternal and tgname in ('ledger_immutable','payment_events_immutable') order by tgname;
+
