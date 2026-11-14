@@ -9,7 +9,6 @@ test.describe('public release smoke', () => {
     ['/contact', /talk about art/i],
     ['/login', /welcome back/i],
     ['/auctions', /rare works/i],
-    ['/auctions/monsoon-courtyard', /monsoon courtyard/i],
   ] as const) {
     test(`${path} is available`, async ({page}) => {
       const response = await page.goto(path);
@@ -64,9 +63,9 @@ test.describe('public release smoke', () => {
     expect(response.status()).toBe(403);
   });
 
-  test('auction preview cannot accept a real-money bid', async ({page}) => {
-    await page.goto('/auctions/monsoon-courtyard');
-    await expect(page.getByRole('heading',{name:/bidding is not activated/i})).toBeVisible();
-    await expect(page.getByRole('button',{name:/place bid/i})).toBeDisabled();
+  test('auction lobby cannot accept real-money bidding', async ({page}) => {
+    await page.goto('/auctions');
+    await expect(page.getByText(/real-money bidding.*remain disabled/i)).toBeVisible();
+    await expect(page.getByRole('button',{name:/place bid/i})).toHaveCount(0);
   });
 });

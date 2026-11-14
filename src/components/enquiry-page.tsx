@@ -1,0 +1,20 @@
+import {submitEnquiry} from '@/app/contact/actions';
+import {ArtworkImage} from '@/components/artwork-image';
+import {mediaById} from '@/data/approved-media';
+import {publicDataConfigured} from '@/lib/public-content';
+
+export type EnquiryType='artwork'|'artist'|'advisory'|'commission'|'corporate'|'resale'|'contact';
+const COPY:Record<EnquiryType,{eyebrow:string;title:string;intro:string;prompt:string;media:string}>={
+  artwork:{eyebrow:'ARTWORK ENQUIRY',title:'Ask about a work.',intro:'Confirm availability, condition, delivery and documentation with a tRA advisor.',prompt:'Which artwork are you considering, and what would you like to know?',media:'ravi-varma-lady'},
+  artist:{eyebrow:'ARTIST ENQUIRY',title:'Begin a conversation.',intro:'Ask about an approved artist, their practice or available published works.',prompt:'Tell us which artist you are interested in.',media:'abanindranath'},
+  advisory:{eyebrow:'PERSONAL GUIDANCE',title:'Find art that belongs with you.',intro:'Share your space, taste and budget. A tRA advisor can help shape a considered shortlist.',prompt:'Tell us about your space, preferences, dimensions and budget.',media:'jahangir-jadrup'},
+  commission:{eyebrow:'CUSTOM COMMISSIONS',title:'A work made with purpose.',intro:'Describe the idea, scale and setting for a future commission. Quotes and artist matching remain human-reviewed.',prompt:'Describe your idea, preferred medium, dimensions, timing and budget.',media:'bharat-mata'},
+  corporate:{eyebrow:'CORPORATE ART',title:'Art for places people share.',intro:'Discuss workplace, hospitality or development projects with a curator.',prompt:'Tell us about the organisation, sites, timeline, scale and budget.',media:'kalighat-vishnu'},
+  resale:{eyebrow:'RESALE ENQUIRIES',title:'A careful route to a new home.',intro:'Share the work and the evidence you hold. Submitting an enquiry is not an appraisal or consignment acceptance.',prompt:'Describe the work, artist, dimensions, provenance and supporting documents.',media:'pichwai'},
+  contact:{eyebrow:'GENERAL ENQUIRIES',title:'Let’s talk about art.',intro:'For questions about tRA, artists or the assisted-collection process, write to the team.',prompt:'How may we help?',media:'tagore-face'},
+};
+
+export function EnquiryPage({type,returnPath,search,artworkId=''}:{type:EnquiryType;returnPath:string;search:{message?:string;error?:string};artworkId?:string}){
+  const copy=COPY[type],enabled=publicDataConfigured();
+  return <section className="enquiry-layout"><div className="enquiry-art"><ArtworkImage media={mediaById(copy.media)} ratio="auto" className="enquiry-media" zoom/></div><div className="enquiry-copy"><p className="eyebrow">{copy.eyebrow}</p><h1>{copy.title}</h1><p className="intro">{copy.intro}</p>{search.message&&<p className="form-message" role="status">{search.message}</p>}{search.error&&<p className="form-message form-error" role="alert">{search.error}</p>}{enabled?<form className="auth-form public-enquiry-form" action={submitEnquiry}><input type="hidden" name="type" value={type}/><input type="hidden" name="returnPath" value={returnPath}/><input type="hidden" name="artworkId" value={artworkId}/><label>Your name<input name="name" required minLength={2} maxLength={160}/></label><label>Email<input name="email" type="email" required/></label><label>Phone, optional<input name="phone" maxLength={50}/></label><label>{copy.prompt}<textarea name="message" required minLength={10} maxLength={4000}/></label><label className="consent-row"><input name="consent" type="checkbox" required/> I consent to tRA using these details to respond to this enquiry.</label><button className="button">Record enquiry</button><small>The request is stored securely for manual review. Outbound email delivery is not active.</small></form>:<div className="public-state" data-kind="blocked"><p className="eyebrow">FORM UNAVAILABLE</p><h2>Secure submission is not configured.</h2><p>This form is disabled in this environment. No submission has been claimed or sent.</p><button className="button" disabled>Record enquiry</button></div>}</div></section>;
+}
