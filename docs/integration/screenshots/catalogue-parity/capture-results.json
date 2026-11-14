@@ -1,0 +1,26 @@
+[
+  {
+    "name": "desktop-1440",
+    "title": "Browse original art",
+    "works": "26 works",
+    "gridColumns": "324px 324px 324px",
+    "overflow": 0,
+    "fixture": "DEVELOPMENT VISUAL FIXTURE\n26 rights-approved heritage references · not inventory · not for sale · unavailable in production"
+  },
+  {
+    "name": "tablet-768",
+    "title": "Browse original art",
+    "works": "26 works",
+    "gridColumns": "329px 329px",
+    "overflow": 0,
+    "fixture": "DEVELOPMENT VISUAL FIXTURE\n26 rights-approved heritage references · not inventory · not for sale · unavailable in production"
+  },
+  {
+    "name": "mobile-390",
+    "title": "Browse original art",
+    "works": "26 works",
+    "gridColumns": "354px",
+    "overflow": 0,
+    "fixture": "DEVELOPMENT VISUAL FIXTURE\n26 rights-approved heritage references · not inventory · not for sale · unavailable in production"
+  }
+]
