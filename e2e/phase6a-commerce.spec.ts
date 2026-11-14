@@ -1,0 +1,4 @@
+import {test,expect} from '@playwright/test';
+for(const route of ['/account/commerce','/artist/commerce','/intermediary/commerce','/admin/commerce'])test(`commerce dashboard denies anonymous access at ${route}`,async({page})=>{await page.goto(route);await expect(page).toHaveURL(/\/login/);await expect(page.getByRole('heading',{name:/welcome back/i})).toBeVisible()});
+for(const width of [1440,768,390])test(`commerce access boundary has no overflow at ${width}px`,async({page})=>{await page.setViewportSize({width,height:900});await page.goto('/account/commerce');expect(await page.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth)).toBe(false)});
+test('real payments and live bidding remain disabled',async({page})=>{await page.goto('/auctions');await expect(page.getByText(/real-money bidding.*remain disabled/i)).toBeVisible();await expect(page.getByRole('button',{name:/place bid/i})).toHaveCount(0)});
