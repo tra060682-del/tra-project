@@ -1,8 +1,8 @@
 export type Money={amountMinor:number;currency:string};
 export type PaymentState='created'|'requires_action'|'processing'|'succeeded'|'failed'|'cancelled'|'partially_refunded'|'refunded';
 export type RefundState='requested'|'processing'|'succeeded'|'failed';
-export type PaymentIntent={id:string;orderReference:string;money:Money;state:PaymentState;idempotencyKey:string;providerReference:string;simulated:true};
-export type Refund={id:string;paymentId:string;money:Money;state:RefundState;idempotencyKey:string;providerReference:string;simulated:true};
+export type PaymentIntent={id:string;orderReference:string;money:Money;state:PaymentState;idempotencyKey:string;providerReference:string;simulated:boolean};
+export type Refund={id:string;paymentId:string;money:Money;state:RefundState;idempotencyKey:string;providerReference:string;simulated:boolean};
 export type PaymentEvent={id:string;createdAt:number;type:'payment.processing'|'payment.succeeded'|'payment.failed'|'refund.succeeded'|'refund.failed';paymentId:string;orderReference:string;amountMinor:number;currency:string;refundId?:string};
 export type WebhookRequest={rawBody:string;signature:string|null;timestamp:string|null;secret:string;now:number;toleranceMs?:number};
 export type WebhookVerification={valid:true;event:PaymentEvent}|{valid:false;code:'MISSING_SIGNATURE'|'INVALID_TIMESTAMP'|'EXPIRED_TIMESTAMP'|'INVALID_SIGNATURE'|'INVALID_PAYLOAD'};

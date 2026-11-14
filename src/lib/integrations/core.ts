@@ -1,4 +1,4 @@
-export type IntegrationMode='disabled'|'local';
+export type IntegrationMode='disabled'|'local'|'sandbox';
 export type RetryClass='never'|'immediate'|'transient'|'rate_limited';
 export type IntegrationOutcome='success'|'rejected'|'failed'|'simulated';
 
@@ -8,7 +8,7 @@ export class IntegrationError extends Error{
 }
 
 export type IntegrationContext={correlationId:string;requestId:string;now?:Date;signal?:AbortSignal};
-export type ProviderResult<T>={outcome:IntegrationOutcome;provider:'local';simulated:true;data:T;providerReference?:string};
+export type ProviderResult<T>={outcome:IntegrationOutcome;provider:string;simulated:boolean;data:T;providerReference?:string};
 
 export function assertSafeMinorUnits(value:number,label='amount'){if(!Number.isSafeInteger(value)||value<0)throw new IntegrationError(`INVALID_${label.toUpperCase()}`);return value}
 export function assertCurrency(value:string){if(!/^[A-Z]{3}$/.test(value))throw new IntegrationError('INVALID_CURRENCY');return value}
@@ -23,5 +23,10 @@ export function withTimeout<T>(operation:(signal:AbortSignal)=>Promise<T>,millis
 }
 
 export type IntegrationConfig={mode:IntegrationMode;featureEnabled:boolean;approvalReference?:string};
-export function integrationCanExecute(config:IntegrationConfig){return config.mode==='local'&&config.featureEnabled&&config.approvalReference==='phase6b1-local-only'}
+export function integrationCanExecute(config:IntegrationConfig){
+  if(!config.featureEnabled)return false;
+  if(config.mode==='local')return config.approvalReference==='phase6b1-local-only';
+  if(config.mode==='sandbox')return config.approvalReference==='phase6b2-sandbox-approved';
+  return false;
+}
 
