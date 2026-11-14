@@ -1,0 +1,12 @@
+import type {OfferStatus,ReservationStatus,SaleStatus,ShippingStatus} from './contracts';
+
+type OfferAction='review'|'send_to_artist'|'counter'|'accept'|'reject'|'withdraw'|'expire';
+const offerTransitions:Record<OfferStatus,Partial<Record<OfferAction,OfferStatus>>>={submitted:{review:'under_review',withdraw:'withdrawn',expire:'expired'},under_review:{send_to_artist:'sent_to_artist',reject:'rejected',withdraw:'withdrawn',expire:'expired'},sent_to_artist:{counter:'countered',accept:'accepted',reject:'rejected',withdraw:'withdrawn',expire:'expired'},countered:{counter:'countered',accept:'accepted',reject:'rejected',withdraw:'withdrawn',expire:'expired'},accepted:{},rejected:{},withdrawn:{},expired:{}};
+export function transitionOffer(status:OfferStatus,action:OfferAction,expiresAt:string,now=Date.now()){if(Date.parse(expiresAt)<=now&&action!=='expire')throw new Error('OFFER_EXPIRED');const next=offerTransitions[status][action];if(!next)throw new Error('INVALID_OFFER_TRANSITION');return next}
+
+export function effectiveReservationStatus(status:ReservationStatus,expiresAt:string,now=Date.now()):ReservationStatus{return ['pending','active'].includes(status)&&Date.parse(expiresAt)<=now?'expired':status}
+const saleTransitions:Record<SaleStatus,SaleStatus[]>={draft:['reserved','cancelled'],reserved:['awaiting_payment','cancelled'],awaiting_payment:['paid','cancelled'],paid:['fulfilment','refunded'],fulfilment:['completed','refunded'],completed:['refunded'],cancelled:[],refunded:[]};
+export function transitionSale(status:SaleStatus,next:SaleStatus){if(!saleTransitions[status].includes(next))throw new Error('INVALID_ORDER_TRANSITION');return next}
+const shippingTransitions:Record<ShippingStatus,ShippingStatus[]>={pending:['awaiting_artist','cancelled'],awaiting_artist:['packaging','cancelled'],packaging:['ready_to_dispatch','exception'],ready_to_dispatch:['dispatched','exception'],dispatched:['in_transit','delivery_attempted','delivered','exception'],in_transit:['delivery_attempted','delivered','exception'],delivery_attempted:['delivered','exception','returned'],delivered:['returned'],exception:['packaging','ready_to_dispatch','dispatched','returned','cancelled'],returned:[],cancelled:[]};
+export function transitionShipping(status:ShippingStatus,next:ShippingStatus){if(!shippingTransitions[status].includes(next))throw new Error('INVALID_SHIPPING_TRANSITION');return next}
+
