@@ -1,5 +1,11 @@
 # Complete functional gap register
 
+## P0 public remediation status — 2026-11-14
+
+The public workstream changes **FUNC-009 Discovery** from "P0 core surface unusable" to **Partially resolved / still P0 data-blocked**. Navigation, homepage discovery, catalogue query/filter/sort/pagination, artwork details, artist search/profile navigation, collection navigation and public enquiry/auth entry points now execute in browser tests. Real production discovery is still blocked by `DATA-001`, `DATA-002` and `DATA-003`: no qualifying public artworks, artists or collections are available, and staged records remain private. The other functional domains and all database-enforcement findings below are unchanged.
+
+No operation in the 214-row crosswalk has been reclassified as fully equivalent merely because a visual fixture exists. The fixture is non-production, no-index, rights-approved, labelled as not inventory, and has no purchase or enquiry success path.
+
 ## Consolidated application gap register
 
 This file is the master index for the complete audit. Detailed source/current references, root cause, correction, dependencies, acceptance criteria and test requirements are held in the named register and linked by stable IDs. The IDs are unique across the audit; overlapping symptoms are not counted twice within a register.

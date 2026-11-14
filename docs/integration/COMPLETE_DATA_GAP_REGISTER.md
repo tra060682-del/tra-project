@@ -1,5 +1,9 @@
 # Complete data gap register
 
+## P0 public remediation status — 2026-11-14
+
+`DATA-001` artworks, `DATA-002` artists and `DATA-003` collections remain **Blocked**. The public UI now has source-equivalent layouts and a clearly labelled non-production fixture using only the 26 approved assets, but this does not change database readiness or publication status. Public table counts were not changed, the 400 staged records were not read or promoted, and no migration was applied. This status supersedes only any inference that fixture screenshots demonstrate production data parity.
+
 ## Current evidence
 
 The latest authorised read-only Supabase inspection on 2026-11-14 found **39 baseline public tables** and seven applied repository migrations. Phase 1, Phase 3 and Phase 6A draft migrations remain unapplied. The linked CLI target is named `tra-development` while its metadata reports environment `production`; that label discrepancy is a mandatory stop condition for any future mutation.

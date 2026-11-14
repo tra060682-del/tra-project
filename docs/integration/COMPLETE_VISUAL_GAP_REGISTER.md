@@ -1,5 +1,24 @@
 # Complete visual gap register
 
+## P0 public remediation status — 2026-11-14
+
+This status supersedes the public-surface state recorded by the audit, but not the original evidence or the dashboard/operational findings below.
+
+| Gap | Status | Evidence |
+|---|---|---|
+| VIS-001 Global header | **Resolved** | Emergent navigation taxonomy, hover/focus dropdowns, search, account/wishlist actions and nested mobile menu are implemented in `src/components/header.tsx`; desktop/tablet/mobile browser checks passed. |
+| VIS-002 Global footer | **Resolved** | Source column order, product statement, contact/legal links and environment status are restored in `src/components/footer.tsx`. Outbound newsletter delivery remains honestly disabled. |
+| VIS-003 Homepage hero | **Resolved** | Source headline, supporting copy, CTA hierarchy, overlay and credit treatment are restored with rights-approved media. |
+| VIS-004 Homepage sections | **Resolved with authorised-data limitations** | Source editorial order is restored from featured works through journal/newsletter. Empty states preserve the layout without inventing public records. |
+| VIS-005 Catalogue population | **Partially resolved** | Three-column layout and 26-item rights-approved non-production fixture are verified. Production remains empty until approved public records exist; the 400 staged records were not promoted. |
+| VIS-006 Artwork cards | **Resolved for available records and fixture evidence** | Curator labels, 4:5 images, hierarchy, metadata and responsive grid are verified. Production content density remains data-blocked. |
+| VIS-007 Artwork detail | **Resolved with authorised-data limitations** | Gallery, zoom, metadata, price/availability treatment, enquiry gates, narrative, artist, certificate and related-work sections are implemented. Real record validation remains blocked by empty public inventory. |
+| VIS-008 Artist directory/profile | **Partially resolved** | Source-style directory, search/tabs, portrait grid and editorial profile are implemented and fixture-verified. Real profiles remain blocked by public approval/consent data. |
+| VIS-009 Collections | **Partially resolved** | Editorial listing, feature covers, narrative detail and ordered works are implemented and fixture-verified. Real collections remain blocked by public data. |
+| VIS-022 Responsive navigation | **Resolved** | Nested 390px menu is keyboard-native, contains source menu groups, and browser checks found no horizontal overflow. |
+
+Current evidence is in [`screenshots/p0-public-parity`](screenshots/p0-public-parity). The live Emergent host was not used for this remediation because the audit recorded network denial; comparison remained source-based plus the approved Phase 2 and catalogue reference screenshots.
+
 ## Method and evidence limits
 
 The current Next.js application was captured from `http://localhost:3000` at 1440×1000, 768×1024, and 390×844 for 28 representative route pairs (84 local captures). No horizontal overflow was detected by the capture script. The live Emergent host rejected all automated access (`ERR_NETWORK_ACCESS_DENIED`); Computer Use and web retrieval were also unavailable. Emergent evidence is therefore:
