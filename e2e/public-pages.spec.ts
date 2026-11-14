@@ -3,7 +3,7 @@ import {expect, test} from '@playwright/test';
 test.describe('public release smoke', () => {
   for (const [path, heading] of [
     ['/', /art/i],
-    ['/artworks', /art worth living with/i],
+    ['/artworks', /browse original art/i],
     ['/join-as-artist', /your practice/i],
     ['/join-as-intermediary', /trusted representation/i],
     ['/contact', /talk about art/i],

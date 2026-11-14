@@ -4,8 +4,8 @@ import {catalogue,type CatalogueArtwork} from '@/lib/catalogue';
 
 const configured=()=>Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL&&process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 
-export type PublicArtist={id:string;name:string;biography:string;statement:string;location:string;website:string;portrait:string|null;artworks:CatalogueArtwork[]};
-export type PublicCollection={id:string;slug:string;title:string;description:string;artworks:CatalogueArtwork[]};
+export type PublicArtist={id:string;name:string;biography:string;statement:string;location:string;website:string;portrait:string|null;artworks:CatalogueArtwork[];isFixture?:boolean};
+export type PublicCollection={id:string;slug:string;title:string;description:string;artworks:CatalogueArtwork[];isFixture?:boolean};
 export type JournalEntry={id:string;slug:string;title:string;body:string;updatedAt:string};
 
 export const publicArtists=cache(async():Promise<PublicArtist[]>=>{

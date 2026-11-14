@@ -11,8 +11,8 @@ export function PublishedArtworkImage({src,alt,className=''}:{src?:string;alt:st
   return <img className={`published-artwork-image ${className}`} src={src} alt={alt} loading="lazy" decoding="async"/>;
 }
 
-export function ArtworkCards({artworks}:{artworks:CatalogueArtwork[]}){
-  return <div className="public-card-grid">{artworks.map(art=><Link className="public-card" href={`/artworks/${art.id}`} key={art.id}><PublishedArtworkImage src={art.imageUrls[0]} alt={art.imageAlt}/><div className="public-card-copy"><small>{art.form} · {art.size}</small><h2>{art.title}</h2><p>{art.artist}</p>{art.price>0&&<strong>{inr(art.price)}</strong>}<span className="catalogue-state">Published inventory</span></div></Link>)}</div>;
+export function ArtworkCards({artworks,preview=false}:{artworks:CatalogueArtwork[];preview?:boolean}){
+  return <div className="public-card-grid">{artworks.map(art=><Link className="public-card" href={`/artworks/${art.id}${preview||art.isFixture?'?preview=approved-media':''}`} key={art.id}><PublishedArtworkImage src={art.imageUrls[0]} alt={art.imageAlt}/><div className="public-card-copy"><small>{art.form} · {art.size}</small><h2>{art.title}</h2><p>{art.artist}</p>{art.price>0&&<strong>{inr(art.price)}</strong>}<span className="catalogue-state">{art.isFixture?'Development reference · not inventory':'Published inventory'}</span></div></Link>)}</div>;
 }
 
 export function PreviewNotice({children}:{children:React.ReactNode}){return <div className="public-preview-notice" role="note"><strong>Preview only</strong><span>{children}</span></div>}
