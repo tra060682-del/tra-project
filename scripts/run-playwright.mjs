@@ -1,6 +1,7 @@
 import {spawn,spawnSync} from 'node:child_process';
 
 const remoteBase = process.env.PLAYWRIGHT_BASE_URL;
+const playwrightArgs=process.argv.slice(2);
 let server;
 const waitForServer = async url => {
   const deadline = Date.now()+120_000;
@@ -20,7 +21,7 @@ try {
     server=spawn(process.execPath,['node_modules/next/dist/bin/next','dev','-H','localhost'],{stdio:'inherit'});
     await waitForServer('http://localhost:3000');
   }
-  const playwright=spawnSync(process.execPath,['node_modules/@playwright/test/cli.js','test'],{
+  const playwright=spawnSync(process.execPath,['node_modules/@playwright/test/cli.js','test',...playwrightArgs],{
     stdio:'inherit',env:{...process.env,PLAYWRIGHT_BASE_URL:remoteBase||'http://localhost:3000'},
   });
   if(playwright.error)throw playwright.error;
