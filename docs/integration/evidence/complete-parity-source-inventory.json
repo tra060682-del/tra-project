@@ -1,0 +1,2803 @@
+{
+  "generatedAt": "2026-11-14T09:45:07.771Z",
+  "emergentRoutes": [
+    {
+      "route": "/",
+      "element": "Home"
+    },
+    {
+      "route": "/browse",
+      "element": "Browse"
+    },
+    {
+      "route": "/category/:slug",
+      "element": "Browse"
+    },
+    {
+      "route": "/art/:id",
+      "element": "ArtworkDetail"
+    },
+    {
+      "route": "/auctions",
+      "element": "Auctions"
+    },
+    {
+      "route": "/auctions/:id",
+      "element": "AuctionLot"
+    },
+    {
+      "route": "/artists",
+      "element": "Artists"
+    },
+    {
+      "route": "/artists/:id",
+      "element": "ArtistProfile"
+    },
+    {
+      "route": "/collections",
+      "element": "CollectionsIndex"
+    },
+    {
+      "route": "/collections/:slug",
+      "element": "CollectionDetail"
+    },
+    {
+      "route": "/advisory",
+      "element": "RequestPage"
+    },
+    {
+      "route": "/commission",
+      "element": "RequestPage"
+    },
+    {
+      "route": "/corporate",
+      "element": "RequestPage"
+    },
+    {
+      "route": "/resale",
+      "element": "RequestPage"
+    },
+    {
+      "route": "/contact",
+      "element": "RequestPage"
+    },
+    {
+      "route": "/journal",
+      "element": "JournalIndex"
+    },
+    {
+      "route": "/journal/:slug",
+      "element": "JournalArticle"
+    },
+    {
+      "route": "/about",
+      "element": "About"
+    },
+    {
+      "route": "/authenticity",
+      "element": "Authenticity"
+    },
+    {
+      "route": "/how-to-bid",
+      "element": "HowToBid"
+    },
+    {
+      "route": "/for-artists",
+      "element": "ForArtists"
+    },
+    {
+      "route": "/legal",
+      "element": "LegalIndexPage"
+    },
+    {
+      "route": "/legal/:key",
+      "element": "LegalDocPage"
+    },
+    {
+      "route": "/verify-certificate",
+      "element": "VerifyCertificatePage"
+    },
+    {
+      "route": "/verify",
+      "element": "Verify"
+    },
+    {
+      "route": "/verify/:number",
+      "element": "Verify"
+    },
+    {
+      "route": "/view-in-room",
+      "element": "ViewInRoom"
+    },
+    {
+      "route": "/bag",
+      "element": "Bag"
+    },
+    {
+      "route": "/account",
+      "element": "Account"
+    },
+    {
+      "route": "/dashboard",
+      "element": "DashboardRedirect"
+    },
+    {
+      "route": "/intermediary",
+      "element": "IntermediaryPage"
+    },
+    {
+      "route": "/join",
+      "element": "Join"
+    },
+    {
+      "route": "/studio",
+      "element": "Studio"
+    },
+    {
+      "route": "/admin",
+      "element": "Admin"
+    },
+    {
+      "route": "/sign-in/*",
+      "element": "SignInPage"
+    },
+    {
+      "route": "/sign-up/*",
+      "element": "SignUpPage"
+    },
+    {
+      "route": "*",
+      "element": "NotFound"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "route": "/",
+      "file": "app/page.tsx",
+      "components": [
+        "Home"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/about",
+      "file": "app/about/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/accept-invitation",
+      "file": "app/accept-invitation/page.tsx",
+      "components": [
+        "AcceptInvitation"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/access-denied",
+      "file": "app/access-denied/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/account",
+      "file": "app/account/page.tsx",
+      "components": [
+        "Account"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/account/commerce",
+      "file": "app/account/commerce/page.tsx",
+      "components": [
+        "CollectorCommerce"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin",
+      "file": "app/admin/page.tsx",
+      "components": [
+        "Admin"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/access",
+      "file": "app/admin/access/page.tsx",
+      "components": [
+        "AccessAdministration"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/auctions",
+      "file": "app/admin/auctions/page.tsx",
+      "components": [
+        "AuctionAdmin"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/audit",
+      "file": "app/admin/audit/page.tsx",
+      "components": [
+        "Audit"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/commerce",
+      "file": "app/admin/commerce/page.tsx",
+      "components": [
+        "AdminCommerce"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/content",
+      "file": "app/admin/content/page.tsx",
+      "components": [
+        "Content"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/enquiries",
+      "file": "app/admin/enquiries/page.tsx",
+      "components": [
+        "Enquiries"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/finance",
+      "file": "app/admin/finance/page.tsx",
+      "components": [
+        "Finance"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/integrations",
+      "file": "app/admin/integrations/page.tsx",
+      "components": [
+        "IntegrationReadiness"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/marketplace",
+      "file": "app/admin/marketplace/page.tsx",
+      "components": [
+        "MarketplaceAdmin",
+        "ReviewForm"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/admin/settings",
+      "file": "app/admin/settings/page.tsx",
+      "components": [
+        "Settings"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/art-advisory",
+      "file": "app/art-advisory/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/artist",
+      "file": "app/artist/page.tsx",
+      "components": [
+        "Artist"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/artist/commerce",
+      "file": "app/artist/commerce/page.tsx",
+      "components": [
+        "ArtistCommerce"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/artists",
+      "file": "app/artists/page.tsx",
+      "components": [
+        "Artists"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/artists/[id]",
+      "file": "app/artists/[id]/page.tsx",
+      "components": [
+        "Artist"
+      ],
+      "serverActions": [
+        "generateMetadata"
+      ]
+    },
+    {
+      "route": "/artworks",
+      "file": "app/artworks/page.tsx",
+      "components": [
+        "Browse"
+      ],
+      "serverActions": [
+        "generateMetadata"
+      ]
+    },
+    {
+      "route": "/artworks/[slug]",
+      "file": "app/artworks/[slug]/page.tsx",
+      "components": [
+        "Detail"
+      ],
+      "serverActions": [
+        "generateMetadata"
+      ]
+    },
+    {
+      "route": "/auctions",
+      "file": "app/auctions/page.tsx",
+      "components": [
+        "Auctions"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/auctions/[id]",
+      "file": "app/auctions/[id]/page.tsx",
+      "components": [
+        "AuctionDetail"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/authenticity",
+      "file": "app/authenticity/page.tsx",
+      "components": [
+        "Authenticity"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/certificates/verify",
+      "file": "app/certificates/verify/page.tsx",
+      "components": [
+        "Verify"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/collections",
+      "file": "app/collections/page.tsx",
+      "components": [
+        "Collections"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/collections/[slug]",
+      "file": "app/collections/[slug]/page.tsx",
+      "components": [
+        "Collection"
+      ],
+      "serverActions": [
+        "generateMetadata"
+      ]
+    },
+    {
+      "route": "/commissions",
+      "file": "app/commissions/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/contact",
+      "file": "app/contact/page.tsx",
+      "components": [
+        "Contact"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/corporate-art",
+      "file": "app/corporate-art/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/design-preview",
+      "file": "app/design-preview/page.tsx",
+      "components": [
+        "DesignPreview"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/for-artists",
+      "file": "app/for-artists/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/forgot-password",
+      "file": "app/forgot-password/page.tsx",
+      "components": [
+        "ForgotPassword"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/how-it-works",
+      "file": "app/how-it-works/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/intermediary",
+      "file": "app/intermediary/page.tsx",
+      "components": [
+        "Intermediary"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/intermediary/commerce",
+      "file": "app/intermediary/commerce/page.tsx",
+      "components": [
+        "IntermediaryCommerce"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/join-as-artist",
+      "file": "app/join-as-artist/page.tsx",
+      "components": [
+        "JoinAsArtist"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/join-as-intermediary",
+      "file": "app/join-as-intermediary/page.tsx",
+      "components": [
+        "JoinAsIntermediary"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/journal",
+      "file": "app/journal/page.tsx",
+      "components": [
+        "Journal"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/journal/[slug]",
+      "file": "app/journal/[slug]/page.tsx",
+      "components": [
+        "Article"
+      ],
+      "serverActions": [
+        "generateMetadata"
+      ]
+    },
+    {
+      "route": "/legal",
+      "file": "app/legal/page.tsx",
+      "components": [
+        "Legal"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/login",
+      "file": "app/login/page.tsx",
+      "components": [
+        "Login"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/privacy",
+      "file": "app/privacy/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/profile",
+      "file": "app/profile/page.tsx",
+      "components": [
+        "Profile"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/resale",
+      "file": "app/resale/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/reset-password",
+      "file": "app/reset-password/page.tsx",
+      "components": [
+        "ResetPassword"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/terms",
+      "file": "app/terms/page.tsx",
+      "components": [
+        "Page"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/wishlist",
+      "file": "app/wishlist/page.tsx",
+      "components": [
+        "Wishlist"
+      ],
+      "serverActions": []
+    },
+    {
+      "route": "/workspace",
+      "file": "app/workspace/page.tsx",
+      "components": [
+        "Workspace"
+      ],
+      "serverActions": []
+    }
+  ],
+  "counts": {
+    "emergentRoutes": 37,
+    "emergentPageFiles": 24,
+    "emergentComponentFiles": 26,
+    "nextPageRoutes": 52,
+    "nextComponentFiles": 17,
+    "nextActionFiles": 9
+  },
+  "emergentPages": [
+    {
+      "file": "pages/Admin.tsx",
+      "lines": 357,
+      "components": [
+        "Admin",
+        "AdminBody",
+        "ArtistsTab",
+        "ArtworksTab",
+        "EnquiriesTab",
+        "FeatureToggle",
+        "FilterPills",
+        "RejectDialog",
+        "ReviewActions",
+        "UsersTab"
+      ],
+      "apiCalls": [
+        "/admin/${kind}/${id}/status",
+        "/admin/artists",
+        "/admin/artworks",
+        "/admin/artworks/${id}/featured",
+        "/admin/enquiries",
+        "/admin/enquiries/${id}/status",
+        "/admin/stats",
+        "/users",
+        "/users/${id}/role"
+      ],
+      "testIds": [
+        "admin-approve-",
+        "admin-artist-row-",
+        "admin-artists-empty",
+        "admin-artwork-ai-",
+        "admin-artwork-row-",
+        "admin-artworks-empty",
+        "admin-changes-",
+        "admin-enquiries-export",
+        "admin-enquiries-table",
+        "admin-enquiry-row-",
+        "admin-enquiry-status-",
+        "admin-feature-",
+        "admin-forbidden",
+        "admin-overview",
+        "admin-reject-",
+        "admin-reset-",
+        "admin-tab-",
+        "admin-title",
+        "admin-user-role-",
+        "admin-user-row-",
+        "admin-users-table",
+        "reject-cancel-button",
+        "reject-confirm-button",
+        "reject-dialog",
+        "reject-note-input"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AdminExtra.tsx",
+      "lines": 144,
+      "components": [
+        "CommissionsAdmin",
+        "EmailLogAdmin",
+        "IntegrationsAdmin",
+        "LogTable",
+        "MediaAdmin",
+        "PaymentsAdmin",
+        "UserAccess"
+      ],
+      "apiCalls": [
+        "/admin/commissions",
+        "/admin/email-log",
+        "/admin/email/retry",
+        "/admin/integrations",
+        "/admin/journal",
+        "/admin/media",
+        "/admin/media/${id}",
+        "/admin/newsletter/send",
+        "/admin/payments",
+        "/admin/requests?type=commission",
+        "/artists",
+        "/users/${userId}/access"
+      ],
+      "testIds": [
+        "access-save",
+        "access-suspend",
+        "admin-commission-artist-select",
+        "admin-commission-request-select",
+        "admin-commission-start",
+        "admin-commission-start-button",
+        "admin-cron-runs",
+        "admin-email-health",
+        "admin-email-retry",
+        "admin-email-stat-",
+        "admin-integrations",
+        "admin-media-empty",
+        "admin-media-grid",
+        "admin-newsletter-send",
+        "admin-user-access-",
+        "integration-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AdminOps.tsx",
+      "lines": 329,
+      "components": [
+        "AuctionsAdmin",
+        "AuditAdmin",
+        "BiddersAdmin",
+        "CertificatesAdmin",
+        "IntermediariesAdmin",
+        "JournalAdmin",
+        "OffersAdmin",
+        "OrderActions",
+        "OrdersAdmin",
+        "ReportsAdmin",
+        "RequestsAdmin",
+        "SettingsAdmin",
+        "Toolbar"
+      ],
+      "apiCalls": [
+        "/admin/artworks",
+        "/admin/auctions",
+        "/admin/audit${entity ? ",
+        "/admin/bidders",
+        "/admin/certificates",
+        "/admin/intermediaries",
+        "/admin/journal",
+        "/admin/journal/${id}",
+        "/admin/offers",
+        "/admin/orders",
+        "/admin/reports",
+        "/admin/representations",
+        "/admin/requests",
+        "/admin/settings"
+      ],
+      "testIds": [
+        "admin-article-",
+        "admin-article-body-input",
+        "admin-article-edit-",
+        "admin-article-form",
+        "admin-article-new",
+        "admin-article-save",
+        "admin-article-status-",
+        "admin-auction-",
+        "admin-auction-artwork-select",
+        "admin-auction-close-",
+        "admin-auction-create-form",
+        "admin-auction-create-submit",
+        "admin-auction-pause-",
+        "admin-auction-resume-",
+        "admin-auction-row-",
+        "admin-auctions-table",
+        "admin-audit-entity-filter",
+        "admin-audit-table",
+        "admin-bidder-approve-",
+        "admin-bidder-row-",
+        "admin-bidders-table",
+        "admin-certificate-artwork-select",
+        "admin-certificate-form",
+        "admin-certificate-submit",
+        "admin-certificates-table",
+        "admin-export-csv",
+        "admin-flag-",
+        "admin-intermediaries-table",
+        "admin-intermediary-approve-",
+        "admin-intermediary-row-",
+        "admin-journal-table",
+        "admin-offer-accept-",
+        "admin-offer-forward-",
+        "admin-offer-reject-",
+        "admin-offer-row-",
+        "admin-offer-status-",
+        "admin-order-cancel-",
+        "admin-order-carrier-",
+        "admin-order-complete-",
+        "admin-order-confirm-",
+        "admin-order-deliver-",
+        "admin-order-dispatch-",
+        "admin-order-ref-",
+        "admin-order-refund-",
+        "admin-order-settle-",
+        "admin-order-tracking-",
+        "admin-request-quote-",
+        "admin-request-row-",
+        "admin-request-status-",
+        "admin-requests-type-filter",
+        "admin-search-input",
+        "admin-settings-",
+        "admin-settings-form",
+        "admin-settings-save",
+        "reports-export",
+        "reports-financial-notice",
+        "reports-revenue-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AiUsage.tsx",
+      "lines": 89,
+      "components": [
+        "AiUsageAdmin",
+        "KINDS"
+      ],
+      "apiCalls": [
+        "/admin/ai/usage?${qs}"
+      ],
+      "testIds": [
+        "ai-usage-admin",
+        "ai-usage-count-",
+        "ai-usage-count-all",
+        "ai-usage-detail-",
+        "ai-usage-empty",
+        "ai-usage-filter-",
+        "ai-usage-filter-all",
+        "ai-usage-next",
+        "ai-usage-page",
+        "ai-usage-prev",
+        "ai-usage-range-",
+        "ai-usage-row-",
+        "ai-usage-search",
+        "ai-usage-table",
+        "ai-usage-toggle-",
+        "ai-usage-who-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Artists.tsx",
+      "lines": 103,
+      "components": [
+        "ANY",
+        "Artists"
+      ],
+      "apiCalls": [
+        "/discover/artists?${qs}",
+        "/discover/facets"
+      ],
+      "testIds": [
+        "artists-clear-filters",
+        "artists-empty",
+        "artists-filter-",
+        "artists-grid",
+        "artists-next-page",
+        "artists-page-indicator",
+        "artists-pagination",
+        "artists-period-",
+        "artists-period-select",
+        "artists-prev-page",
+        "artists-result-count",
+        "artists-search-input",
+        "artists-sort-",
+        "artists-sort-select",
+        "artists-title"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/ArtworkDetail.tsx",
+      "lines": 326,
+      "components": [
+        "ArtworkDetail",
+        "ArtworkViewer",
+        "EnquiryDialog",
+        "I",
+        "OfferDialog"
+      ],
+      "apiCalls": [
+        "/artworks/${id}",
+        "/enquiries",
+        "/offers"
+      ],
+      "testIds": [
+        "artist-bio-name",
+        "artist-bio-section",
+        "artist-bio-text",
+        "artist-more-works-link",
+        "artwork-add-to-bag-button",
+        "artwork-artist-link",
+        "artwork-availability",
+        "artwork-back-link",
+        "artwork-description",
+        "artwork-enquire-button",
+        "artwork-image-thumb-",
+        "artwork-main-image",
+        "artwork-not-found",
+        "artwork-offer-button",
+        "artwork-price",
+        "artwork-sample-notice",
+        "artwork-style",
+        "artwork-title",
+        "artwork-view-",
+        "artwork-view-in-room-link",
+        "artwork-wishlist-button",
+        "artwork-zoom-area",
+        "enquiry-confirmation",
+        "enquiry-dialog",
+        "enquiry-done-button",
+        "enquiry-email-input",
+        "enquiry-error",
+        "enquiry-message-input",
+        "enquiry-name-input",
+        "enquiry-phone-input",
+        "enquiry-private-viewing-checkbox",
+        "enquiry-reference",
+        "enquiry-submit-button",
+        "offer-amount-input",
+        "offer-dialog",
+        "offer-message-input",
+        "offer-submit-button"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AttributionReview.tsx",
+      "lines": 81,
+      "components": [
+        "AttributionReviewAdmin",
+        "ReviewCard"
+      ],
+      "apiCalls": [
+        "/admin/attribution-reviews",
+        "/admin/attribution-reviews/${encodeURIComponent(r.id)}/decision"
+      ],
+      "testIds": [
+        "attribution-confirm-",
+        "attribution-confirm-check-",
+        "attribution-corrections-",
+        "attribution-decisions-",
+        "attribution-fields-",
+        "attribution-history-",
+        "attribution-item-",
+        "attribution-note-",
+        "attribution-open-",
+        "attribution-reject-",
+        "attribution-review-notice",
+        "attribution-review-queue",
+        "attribution-state-",
+        "attribution-status-",
+        "attribution-title-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AuctionLot.tsx",
+      "lines": 170,
+      "components": [
+        "AuctionLot",
+        "BidPanel",
+        "BidderForm"
+      ],
+      "apiCalls": [
+        "/auctions/${a.id}/bids",
+        "/auctions/${id}",
+        "/auctions/${id}/watch",
+        "/bidder",
+        "/me/watchlist"
+      ],
+      "testIds": [
+        "auction-not-found",
+        "bid-amount-input",
+        "bid-cancel-button",
+        "bid-confirm-box",
+        "bid-confirm-button",
+        "bid-leading-note",
+        "bid-max-input",
+        "bid-panel",
+        "bid-quick-",
+        "bid-review-button",
+        "bidder-city-input",
+        "bidder-name-input",
+        "bidder-phone-input",
+        "bidder-register-form",
+        "bidder-register-submit",
+        "bidder-status-note",
+        "bidder-terms-checkbox",
+        "bidding-off",
+        "lot-artwork-link",
+        "lot-back-link",
+        "lot-bid-history",
+        "lot-reserve",
+        "lot-result",
+        "lot-signin-to-bid",
+        "lot-status",
+        "lot-title",
+        "lot-watch-button"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Auctions.tsx",
+      "lines": 133,
+      "components": [
+        "AuctionCard",
+        "Auctions",
+        "Calendar",
+        "TestModeNotice"
+      ],
+      "apiCalls": [
+        "/auctions"
+      ],
+      "testIds": [
+        "auction-artwork-link-",
+        "auction-card-",
+        "auction-price-",
+        "auction-timer-",
+        "auction-view-button-",
+        "auctions-calendar",
+        "auctions-empty-",
+        "auctions-list-",
+        "auctions-tab-",
+        "auctions-tabs",
+        "auctions-title"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/AuthPages.tsx",
+      "lines": 40,
+      "components": [
+        "AuthShell",
+        "SignInPage",
+        "SignUpPage"
+      ],
+      "apiCalls": [],
+      "testIds": [
+        "sign-in-page",
+        "sign-up-page"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Browse.tsx",
+      "lines": 334,
+      "components": [
+        "Browse",
+        "CategoryHeader",
+        "FilterGroup",
+        "Filters",
+        "LIMIT"
+      ],
+      "apiCalls": [
+        "/artists",
+        "/artworks?${apiQuery}",
+        "/meta/filters?${facetQuery}",
+        "/taxonomy/category/${slug}"
+      ],
+      "testIds": [
+        "active-filter-",
+        "browse-clear-filters",
+        "browse-empty",
+        "browse-filters",
+        "browse-grid",
+        "browse-load-more",
+        "browse-mobile-filters-button",
+        "browse-result-count",
+        "browse-save-search",
+        "browse-saved-searches",
+        "browse-search-input",
+        "browse-sort-",
+        "browse-sort-select",
+        "browse-title",
+        "category-description",
+        "category-header",
+        "category-not-found",
+        "category-stats",
+        "category-title",
+        "filter-",
+        "filter-count-",
+        "filter-group-",
+        "filter-more-",
+        "filter-toggle-",
+        "filters-clear"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/CertCenter.tsx",
+      "lines": 170,
+      "components": [
+        "CertCard",
+        "CertReviewAdmin",
+        "CertUploadForm",
+        "MyCertificates",
+        "Pill",
+        "TYPE_LABEL",
+        "VerifyCertificatePage"
+      ],
+      "apiCalls": [
+        "/admin/cert-docs${status ? ",
+        "/admin/cert-docs/${id}/action",
+        "/cert-docs/${id}/file${version ? ",
+        "/cert-docs/mine",
+        "/verify-certificate?q=${encodeURIComponent(query)}"
+      ],
+      "testIds": [
+        "cert-action-",
+        "cert-artist-select",
+        "cert-artwork-select",
+        "cert-assurance-",
+        "cert-card-",
+        "cert-file-input",
+        "cert-filter-",
+        "cert-issue-date-input",
+        "cert-issuer-input",
+        "cert-note-",
+        "cert-number-input",
+        "cert-open-",
+        "cert-org-input",
+        "cert-qr-",
+        "cert-review-admin",
+        "cert-review-empty",
+        "cert-status",
+        "cert-type-select",
+        "cert-upload-form",
+        "cert-upload-submit",
+        "cert-version-file-",
+        "cert-version-submit-",
+        "my-certificates",
+        "my-certificates-empty",
+        "verify-cert-artwork",
+        "verify-cert-assurance",
+        "verify-cert-input",
+        "verify-cert-not-found",
+        "verify-cert-result",
+        "verify-cert-status",
+        "verify-cert-submit",
+        "verify-cert-title"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Collections.tsx",
+      "lines": 127,
+      "components": [
+        "ArtistProfile",
+        "CollectionDetail",
+        "CollectionsIndex"
+      ],
+      "apiCalls": [
+        "/artists/${id}/page",
+        "/artworks?collection=${slug}",
+        "/taxonomy/collection/${slug}"
+      ],
+      "testIds": [
+        "artist-artforms",
+        "artist-bio",
+        "artist-code",
+        "artist-commission-closed",
+        "artist-commission-link",
+        "artist-enquiry-link",
+        "artist-featured-blurb",
+        "artist-location",
+        "artist-name",
+        "artist-no-works",
+        "artist-not-found",
+        "artist-photo",
+        "artist-sample-notice",
+        "artist-sold-grid",
+        "artist-statement",
+        "artist-stories",
+        "artist-works-grid",
+        "collection-count",
+        "collection-grid",
+        "collection-not-found",
+        "collection-refine-link",
+        "collection-title",
+        "collections-title",
+        "style-link-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Commerce.tsx",
+      "lines": 316,
+      "components": [
+        "Account",
+        "AccountBody",
+        "Bag",
+        "BagBody",
+        "MyPayments",
+        "OfferRow",
+        "OrderCard",
+        "TestBadge",
+        "Timeline",
+        "Verify",
+        "ViewInRoom"
+      ],
+      "apiCalls": [
+        "/account",
+        "/artworks?${recentIds.map((i) => ",
+        "/artworks?availability=available",
+        "/certificates/${encodeURIComponent(number)}",
+        "/checkout",
+        "/offers/${o.id}/action",
+        "/payments/mine"
+      ],
+      "testIds": [
+        "account-",
+        "account-bid-",
+        "account-offer-",
+        "account-offer-status-",
+        "account-payments",
+        "account-payments-empty",
+        "account-request-",
+        "account-tab-",
+        "account-title",
+        "account-verify-link",
+        "bag-empty",
+        "bag-item-",
+        "bag-remove-",
+        "bag-title",
+        "bag-total",
+        "checkout-",
+        "checkout-form",
+        "checkout-notes-input",
+        "checkout-submit-button",
+        "checkout-terms-checkbox",
+        "offer-accept-counter-",
+        "offer-decline-counter-",
+        "order-",
+        "order-confirmation",
+        "order-payment-instructions-",
+        "order-status-",
+        "order-total-",
+        "order-view-account",
+        "room-art-",
+        "room-canvas",
+        "room-frame-",
+        "room-pick-",
+        "room-scale-input",
+        "room-share-button",
+        "room-title",
+        "room-upload-input",
+        "room-upload-label",
+        "room-wall-width-input",
+        "verify-download",
+        "verify-input",
+        "verify-not-found",
+        "verify-qr",
+        "verify-result",
+        "verify-status",
+        "verify-submit",
+        "verify-title"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/DiscoveryAdmin.tsx",
+      "lines": 483,
+      "components": [
+        "AnalyticsView",
+        "Card",
+        "ChipSet",
+        "ClassificationManager",
+        "DiscoveryAdmin",
+        "DiscoverySettingsForm",
+        "FeaturedScheduler",
+        "HomepageManager",
+        "Pill",
+        "TagAssist",
+        "TaxonomyManager",
+        "TestimonialsManager",
+        "WhatsAppForm"
+      ],
+      "apiCalls": [
+        "/admin/ai/artworks/${id}/taxonomy-suggestions",
+        "/admin/analytics?days=${days}",
+        "/admin/artwork-taxonomy?${qs}",
+        "/admin/artworks/${edit!.id}/taxonomy",
+        "/admin/discovery-settings",
+        "/admin/featured-artists",
+        "/admin/featured-artists/${id}",
+        "/admin/homepage",
+        "/admin/homepage/publish",
+        "/admin/taxonomy",
+        "/admin/taxonomy/${edit.id}",
+        "/admin/taxonomy/${t.id}",
+        "/admin/taxonomy?kind=${kind}",
+        "/admin/testimonials",
+        "/admin/testimonials${status ? ",
+        "/admin/testimonials/${form.id}",
+        "/admin/testimonials/${p.id}/action",
+        "/admin/whatsapp",
+        "/artists",
+        "/discover/settings"
+      ],
+      "testIds": [
+        "analytics-",
+        "analytics-days-",
+        "analytics-marketplace",
+        "analytics-total-",
+        "analytics-unique",
+        "classification-edit-",
+        "classification-filter-",
+        "classification-form",
+        "classification-row-",
+        "classification-save",
+        "classification-search",
+        "classification-verified",
+        "classify-",
+        "collection-rule-editor",
+        "discovery-admin-",
+        "discovery-popular-days",
+        "discovery-settings-save",
+        "discovery-trending-days",
+        "discovery-weight-",
+        "featured-artist-option-",
+        "featured-artist-select",
+        "featured-blurb-input",
+        "featured-end-",
+        "featured-end-input",
+        "featured-form",
+        "featured-order-input",
+        "featured-row-",
+        "featured-slot-select",
+        "featured-start-input",
+        "featured-state-",
+        "featured-submit",
+        "homepage-down-",
+        "homepage-enabled-",
+        "homepage-limit-",
+        "homepage-preview",
+        "homepage-publish",
+        "homepage-row-",
+        "homepage-save-draft",
+        "homepage-title-",
+        "homepage-unpublished-note",
+        "homepage-up-",
+        "rule-artforms",
+        "rule-auction",
+        "rule-emerging",
+        "rule-featured",
+        "rule-max-price",
+        "rule-min-price",
+        "rule-new-days",
+        "rule-styles",
+        "rule-subjects",
+        "tag-ai",
+        "tag-ai-apply",
+        "tag-ai-result",
+        "tag-ai-suggest",
+        "taxonomy-count-",
+        "taxonomy-description-input",
+        "taxonomy-edit-",
+        "taxonomy-form",
+        "taxonomy-image-input",
+        "taxonomy-kind-",
+        "taxonomy-name-input",
+        "taxonomy-nav-",
+        "taxonomy-new",
+        "taxonomy-order-input",
+        "taxonomy-row-",
+        "taxonomy-save",
+        "taxonomy-slug-input",
+        "taxonomy-toggle-",
+        "testimonial-",
+        "testimonial-artwork-input",
+        "testimonial-city-input",
+        "testimonial-consent",
+        "testimonial-edit-",
+        "testimonial-form",
+        "testimonial-name-input",
+        "testimonial-note-input",
+        "testimonial-note-submit",
+        "testimonial-photo-input",
+        "testimonial-rating-input",
+        "testimonial-row-",
+        "testimonial-save",
+        "testimonial-status-",
+        "testimonial-text-input",
+        "testimonials-empty",
+        "testimonials-filter-",
+        "testimonials-new",
+        "whatsapp-enabled",
+        "whatsapp-message-input",
+        "whatsapp-number-input",
+        "whatsapp-privacy-input",
+        "whatsapp-save"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Home.tsx",
+      "lines": 265,
+      "components": [
+        "Home",
+        "I",
+        "Icon"
+      ],
+      "apiCalls": [
+        "/artworks?featured=true",
+        "/auctions",
+        "/journal",
+        "/journal?category=Artist%20Stories"
+      ],
+      "testIds": [
+        "featured-empty",
+        "featured-view-all",
+        "hero-auctions-button",
+        "hero-explore-button",
+        "hero-how-button",
+        "home-advisory",
+        "home-auction-",
+        "home-auctions-empty",
+        "home-commission",
+        "home-cta-",
+        "home-cta-commission",
+        "home-hero",
+        "home-hero-title",
+        "home-how-it-works",
+        "home-journal",
+        "home-preview-banner",
+        "home-stories",
+        "home-story-",
+        "home-trust",
+        "pledge-join-button",
+        "stories-view-all"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Intermediary.tsx",
+      "lines": 113,
+      "components": [
+        "Body",
+        "IntermediaryPage",
+        "NAV_I",
+        "RegisterForm"
+      ],
+      "apiCalls": [
+        "/intermediary",
+        "/intermediary/register",
+        "/representations/${id}/action"
+      ],
+      "testIds": [
+        "intermediary-about-input",
+        "intermediary-agreement-checkbox",
+        "intermediary-business-input",
+        "intermediary-draft-editor",
+        "intermediary-edit-draft-",
+        "intermediary-kind-",
+        "intermediary-location-input",
+        "intermediary-name-input",
+        "intermediary-offers-locked",
+        "intermediary-pending-note",
+        "intermediary-phone-input",
+        "intermediary-register-form",
+        "intermediary-register-submit",
+        "intermediary-revoke-",
+        "intermediary-shipping-locked",
+        "intermediary-status",
+        "intermediary-submit-artist-select",
+        "intermediary-tab-",
+        "intermediary-title",
+        "intermediary-work-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Join.tsx",
+      "lines": 198,
+      "components": [
+        "ArtistForm",
+        "Join",
+        "SignedInJoin"
+      ],
+      "apiCalls": [
+        "/artists/register"
+      ],
+      "testIds": [
+        "artist-register-form",
+        "join-create-account",
+        "join-edit-application",
+        "join-existing-application",
+        "join-go-studio",
+        "join-sign-in",
+        "join-signed-out",
+        "join-title",
+        "register-",
+        "register-agreement-checkbox",
+        "register-bio-input",
+        "register-commissions-checkbox",
+        "register-error",
+        "register-location-input",
+        "register-name-input",
+        "register-originality-checkbox",
+        "register-participation",
+        "register-participation-",
+        "register-phone-input",
+        "register-style-",
+        "register-submit-button"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/JournalCenter.tsx",
+      "lines": 317,
+      "components": [
+        "ArticleEditor",
+        "Bookmarks",
+        "Card",
+        "ImageUpload",
+        "JournalAdminV2",
+        "JournalArticle",
+        "JournalAssist",
+        "JournalIndex",
+        "StoriesPanel"
+      ],
+      "apiCalls": [
+        "/admin/journal",
+        "/admin/journal${status ? ",
+        "/admin/journal-categories",
+        "/admin/journal-taxonomy",
+        "/admin/journal/${a!.id}/action",
+        "/admin/journal/${a.id}",
+        "/admin/journal/${id}/action",
+        "/artists",
+        "/artworks",
+        "/journal/${slug}",
+        "/journal?${qs}",
+        "/me/journal-bookmarks",
+        "/me/journal-bookmarks/${slug}",
+        "/studio/stories",
+        "/studio/stories/${id}/quote-approval"
+      ],
+      "testIds": [
+        "article-",
+        "article-action-",
+        "article-action-schedule",
+        "article-ai-assisted",
+        "article-author",
+        "article-bookmark",
+        "article-category-select",
+        "article-editor",
+        "article-editor-back",
+        "article-editor-status",
+        "article-editorial-note",
+        "article-featured-checkbox",
+        "article-hero",
+        "article-image-credit",
+        "article-not-found",
+        "article-related",
+        "article-related-art",
+        "article-save",
+        "article-schedule-input",
+        "article-share",
+        "article-sources",
+        "article-sources-input",
+        "article-tags-input",
+        "article-title",
+        "article-voice-select",
+        "bookmarks-empty",
+        "bookmarks-list",
+        "journal-admin",
+        "journal-admin-edit-",
+        "journal-admin-filter-",
+        "journal-admin-new",
+        "journal-admin-row-",
+        "journal-ai-length-",
+        "journal-ai-notes",
+        "journal-ai-topic",
+        "journal-bulk-bar",
+        "journal-bulk-publish",
+        "journal-card-",
+        "journal-cat-",
+        "journal-categories",
+        "journal-categories-input",
+        "journal-categories-save",
+        "journal-empty",
+        "journal-featured",
+        "journal-grid",
+        "journal-link-voices",
+        "journal-next",
+        "journal-pagination",
+        "journal-popular",
+        "journal-prev",
+        "journal-search-input",
+        "journal-taxonomy",
+        "journal-title",
+        "stories-empty",
+        "stories-panel",
+        "story-approve-",
+        "story-artist-select",
+        "story-excerpt-input",
+        "story-row-",
+        "story-submit",
+        "story-title-input",
+        "story-type-select",
+        "story-video-input"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/LegalCenter.tsx",
+      "lines": 168,
+      "components": [
+        "AgreementsPanel",
+        "DraftBanner",
+        "LegalAdmin",
+        "LegalDocPage",
+        "LegalEditor",
+        "LegalIndexPage"
+      ],
+      "apiCalls": [
+        "/admin/legal",
+        "/admin/legal/${docKey}",
+        "/admin/legal/${docKey}/action",
+        "/legal-docs",
+        "/legal-docs/${key}",
+        "/legal-docs/${key}/accept",
+        "/me/agreements"
+      ],
+      "testIds": [
+        "agreement-",
+        "agreement-accept-",
+        "agreements-panel",
+        "legal-accept",
+        "legal-action-",
+        "legal-action-archive",
+        "legal-admin",
+        "legal-admin-row-",
+        "legal-compare-",
+        "legal-counsel-checkbox",
+        "legal-create",
+        "legal-diff",
+        "legal-doc-title",
+        "legal-draft-banner",
+        "legal-editor",
+        "legal-editor-back",
+        "legal-editor-status",
+        "legal-link-",
+        "legal-list",
+        "legal-material-checkbox",
+        "legal-new-key",
+        "legal-new-title",
+        "legal-restore-",
+        "legal-save",
+        "legal-summary-input",
+        "legal-title",
+        "legal-title-input",
+        "legal-version-",
+        "legal-versions"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/PeopleAdmin.tsx",
+      "lines": 232,
+      "components": [
+        "ArtistRepresentations",
+        "ArtistVerificationAdmin",
+        "CreatePerson",
+        "InviteFormV2",
+        "PeopleConsole",
+        "PersonDialog",
+        "RelationshipsAdmin",
+        "RepRow",
+        "SCOPE_LABEL",
+        "STAFF",
+        "ScopeEditor"
+      ],
+      "apiCalls": [
+        "/admin/artists",
+        "/admin/artists/${open}/profile",
+        "/admin/artists/${open}/verify",
+        "/admin/people",
+        "/admin/people/${p.user_id}",
+        "/admin/people/${p.user_id}/history",
+        "/admin/people/${p.user_id}/recover",
+        "/admin/people/invites/${id}/revoke",
+        "/admin/people?${qs}",
+        "/admin/representations",
+        "/admin/representations/${id}/terminate",
+        "/artists",
+        "/artworks?artist=${f.artist_id}",
+        "/intermediary/invites",
+        "/representations/${id}/action",
+        "/representations/${r.id}/scopes",
+        "/studio/representations"
+      ],
+      "testIds": [
+        "artist-id-row-",
+        "artist-ids-admin",
+        "artist-representations",
+        "artist-reps-empty",
+        "artist-verification-detail",
+        "invite-",
+        "invite-artist-select",
+        "invite-artwork-scope",
+        "invite-commission-input",
+        "invite-form",
+        "invite-note",
+        "invite-revoke-",
+        "invite-scope-",
+        "invite-submit",
+        "invite-territory-input",
+        "invite-type-select",
+        "people-role-filter",
+        "people-search",
+        "people-status-filter",
+        "person-activity",
+        "person-archive",
+        "person-create-email",
+        "person-create-form",
+        "person-create-name",
+        "person-create-role",
+        "person-create-submit",
+        "person-deactivate",
+        "person-deactivation-requests",
+        "person-dialog",
+        "person-grant-",
+        "person-grants-save",
+        "person-logins",
+        "person-manage-",
+        "person-reactivate",
+        "person-reason",
+        "person-recover",
+        "person-role-save",
+        "person-role-select",
+        "person-row-",
+        "person-suspend",
+        "relationships-admin",
+        "rep-accept-",
+        "rep-decline-",
+        "rep-edit-",
+        "rep-revoke-",
+        "rep-row-",
+        "rep-scope-",
+        "rep-scope-editor-",
+        "rep-scope-save-",
+        "rep-status-",
+        "rep-terminate-",
+        "rep-terminate-reason",
+        "verify-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/ProfileCenter.tsx",
+      "lines": 228,
+      "components": [
+        "ArtistProfileEditor",
+        "AvatarEditor",
+        "Field",
+        "ProfileSettings",
+        "Progress",
+        "ShareExperience"
+      ],
+      "apiCalls": [
+        "/me/avatar",
+        "/me/deactivation",
+        "/me/prefs",
+        "/me/profile",
+        "/me/sessions",
+        "/me/sessions/${id}/revoke",
+        "/studio/finance",
+        "/studio/participation",
+        "/studio/profile",
+        "/testimonials"
+      ],
+      "testIds": [
+        "artist-",
+        "artist-code",
+        "artist-completeness",
+        "artist-missing",
+        "artist-profile-editor",
+        "artist-profile-save",
+        "artist-secondary-input",
+        "artist-years-input",
+        "avatar-choose",
+        "avatar-current",
+        "avatar-editor",
+        "avatar-file-input",
+        "avatar-preview",
+        "avatar-remove",
+        "avatar-save",
+        "avatar-zoom",
+        "deactivation-cancel",
+        "deactivation-panel",
+        "deactivation-reason",
+        "deactivation-request",
+        "finance-ifsc",
+        "finance-name",
+        "finance-number",
+        "finance-pan",
+        "finance-panel",
+        "finance-save",
+        "identity-file-input",
+        "participation-",
+        "participation-panel",
+        "pref-",
+        "profile-",
+        "profile-bio-input",
+        "profile-email",
+        "profile-meta",
+        "profile-postal_address-input",
+        "profile-save",
+        "profile-settings",
+        "profile-social-",
+        "session-revoke-",
+        "sessions-panel",
+        "share-city-input",
+        "share-consent",
+        "share-experience",
+        "share-experience-open",
+        "share-name-input",
+        "share-rating-input",
+        "share-submit",
+        "share-text-input"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Services.tsx",
+      "lines": 227,
+      "components": [
+        "About",
+        "Authenticity",
+        "Faq",
+        "ForArtists",
+        "HowToBid",
+        "JournalArticle",
+        "JournalIndex",
+        "Legal",
+        "Newsletter",
+        "Prose",
+        "RequestPage"
+      ],
+      "apiCalls": [
+        "/artists",
+        "/journal",
+        "/journal/${slug}",
+        "/legal",
+        "/newsletter",
+        "/requests"
+      ],
+      "testIds": [
+        "article-body",
+        "article-not-found",
+        "article-title",
+        "authenticity-verify-link",
+        "for-artists-join-link",
+        "journal-card-",
+        "journal-grid",
+        "journal-title",
+        "legal-doc-",
+        "legal-draft-notice",
+        "newsletter-consent-checkbox",
+        "newsletter-email-input",
+        "newsletter-section",
+        "newsletter-submit-button",
+        "newsletter-success",
+        "request-",
+        "request-confirmation",
+        "request-email-input",
+        "request-message-input",
+        "request-name-input",
+        "request-phone-input",
+        "request-reference",
+        "request-submit-button"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "pages/Studio.tsx",
+      "lines": 400,
+      "components": [
+        "DescriptionAssist",
+        "ShippingPanel",
+        "Studio",
+        "StudioBody",
+        "StudioOffers",
+        "StudioSales",
+        "SubmitArtwork"
+      ],
+      "apiCalls": [
+        "/offers/${id}/action",
+        "/orders/${id}/shipping",
+        "/shipping",
+        "/studio",
+        "/studio/artworks/${id}",
+        "/studio/sales"
+      ],
+      "testIds": [
+        "description-ai-notes",
+        "description-ai-voice-",
+        "shipping-carrier-",
+        "shipping-date-",
+        "shipping-deliver-",
+        "shipping-dispatch-",
+        "shipping-doc-",
+        "shipping-empty",
+        "shipping-order-",
+        "shipping-panel",
+        "shipping-status-",
+        "shipping-tracking-",
+        "studio-apply-link",
+        "studio-changes-note",
+        "studio-documents",
+        "studio-edit-draft-",
+        "studio-editing-draft",
+        "studio-enquiries-empty",
+        "studio-enquiry-",
+        "studio-new-artwork-button",
+        "studio-no-profile",
+        "studio-offer-",
+        "studio-offer-accept-",
+        "studio-offer-counter-",
+        "studio-offer-counter-input-",
+        "studio-offer-reject-",
+        "studio-offers-empty",
+        "studio-pending-note",
+        "studio-resubmit-",
+        "studio-sales-empty",
+        "studio-sales-table",
+        "studio-tab-auctions",
+        "studio-tab-enquiries",
+        "studio-tab-offers",
+        "studio-tab-representation",
+        "studio-tab-sales",
+        "studio-tab-submit",
+        "studio-tab-works",
+        "studio-title",
+        "studio-withdraw-",
+        "studio-work-row-",
+        "studio-works-empty",
+        "studio-works-table",
+        "submit-artwork-button",
+        "submit-artwork-draft-button",
+        "submit-artwork-form",
+        "submit-auction-checkbox",
+        "submit-description-input",
+        "submit-error",
+        "submit-extra-images-input",
+        "submit-framed-checkbox",
+        "submit-height-input",
+        "submit-image-option-",
+        "submit-medium-select",
+        "submit-origin-input",
+        "submit-originality-checkbox",
+        "submit-price-input",
+        "submit-style-select",
+        "submit-subject-input",
+        "submit-title-input",
+        "submit-width-input",
+        "submit-year-input"
+      ],
+      "serverActions": []
+    }
+  ],
+  "emergentComponents": [
+    {
+      "file": "components/ai/AiAssist.tsx",
+      "lines": 155,
+      "components": [
+        "AiDraftPanel",
+        "AskArtwork",
+        "STARTERS"
+      ],
+      "apiCalls": [
+        "/artworks/${artworkId}/ask/${sid}"
+      ],
+      "testIds": [
+        "ask-artwork-error",
+        "ask-artwork-input",
+        "ask-artwork-message-",
+        "ask-artwork-remaining",
+        "ask-artwork-section",
+        "ask-artwork-starter-",
+        "ask-artwork-streaming",
+        "ask-artwork-submit",
+        "ask-artwork-transcript"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/auth/AuthBridge.tsx",
+      "lines": 35,
+      "components": [
+        "AuthBridge"
+      ],
+      "apiCalls": [
+        "/me"
+      ],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/auth/ClerkAuthProvider.tsx",
+      "lines": 82,
+      "components": [
+        "BACKEND_URL",
+        "ClerkAuthProvider"
+      ],
+      "apiCalls": [
+        "${BACKEND_URL}/api/clerk/config"
+      ],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/dashboard/DashboardShell.tsx",
+      "lines": 93,
+      "components": [
+        "AccountSettings",
+        "DashboardRedirect",
+        "DashboardShell",
+        "STAFF",
+        "Sidebar"
+      ],
+      "apiCalls": [],
+      "testIds": [
+        "dash-breadcrumbs",
+        "dash-collapse",
+        "dash-logout",
+        "dash-mobile-menu",
+        "dash-nav-",
+        "dash-switch-",
+        "dash-title",
+        "dashboard-shell"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/dashboard/Integrations.tsx",
+      "lines": 172,
+      "components": [
+        "A",
+        "CommissionCard",
+        "CommissionList",
+        "ImageUploader",
+        "PayButton",
+        "R"
+      ],
+      "apiCalls": [
+        "/commissions/${c.id}/action",
+        "/commissions/${c.id}/quote",
+        "/payments/config",
+        "/payments/verify",
+        "/uploads/${id}",
+        "/uploads/config",
+        "/uploads/register",
+        "https://api.cloudinary.com/v1_1/${sig.cloud_name}/image/upload"
+      ],
+      "testIds": [
+        "commission-",
+        "commission-note-",
+        "commission-quote-amount-",
+        "commission-quote-deadline-",
+        "commission-send-quote-",
+        "commission-status-",
+        "commissions-empty-",
+        "image-uploader",
+        "pay-not-configured",
+        "pay-online-button",
+        "upload-add",
+        "upload-input",
+        "upload-item-",
+        "upload-not-configured",
+        "upload-remove-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/gallery/ArtworkCard.tsx",
+      "lines": 60,
+      "components": [
+        "ArtworkCard",
+        "ArtworkCardSkeleton"
+      ],
+      "apiCalls": [],
+      "testIds": [
+        "artwork-card-",
+        "artwork-card-price-",
+        "artwork-card-title-",
+        "sample-badge-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/gallery/Bits.tsx",
+      "lines": 74,
+      "components": [
+        "Countdown",
+        "DemoBadge",
+        "LiveDot",
+        "SectionHeading",
+        "StatusBadge"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/gallery/Discovery.tsx",
+      "lines": 295,
+      "components": [
+        "ArtformGrid",
+        "ArtistPortraitCard",
+        "CategoryNav",
+        "CategoryShowcase",
+        "CollectionsGrid",
+        "MeetArtists",
+        "SubjectChips",
+        "TabButton",
+        "Testimonials",
+        "WhatsAppButton"
+      ],
+      "apiCalls": [
+        "/artworks/${artId}",
+        "/discover/artists?tab=${tab}&per=${tab === ",
+        "/support/whatsapp",
+        "/taxonomy?kind=${kind}&counts=${counts}",
+        "/testimonials?limit=${limit}",
+        "/track"
+      ],
+      "testIds": [
+        "artform-card-",
+        "artform-count-",
+        "artform-explore-",
+        "artforms-view-all",
+        "artist-portrait-",
+        "artist-portrait-name-",
+        "category-card-",
+        "category-count-",
+        "category-more-",
+        "category-nav",
+        "category-nav-",
+        "category-nav-more",
+        "collection-card-",
+        "collection-count-",
+        "collections-view-all",
+        "home-artforms",
+        "home-categories",
+        "home-collections",
+        "home-meet-artists",
+        "home-subjects",
+        "home-testimonials",
+        "meet-artists-basis",
+        "meet-artists-empty",
+        "meet-artists-heading",
+        "meet-artists-panel-",
+        "meet-artists-view-more",
+        "meet-artists-week-link",
+        "sample-badge-",
+        "subject-chip-",
+        "testimonial-",
+        "whatsapp-artwork-context",
+        "whatsapp-button",
+        "whatsapp-close",
+        "whatsapp-continue",
+        "whatsapp-panel",
+        "whatsapp-privacy"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/gallery/SiteLayout.tsx",
+      "lines": 269,
+      "components": [
+        "AccountLinks",
+        "BagLink",
+        "DesktopNav",
+        "Footer",
+        "Header",
+        "Notifications",
+        "SearchDialog",
+        "SiteLayout",
+        "Wordmark"
+      ],
+      "apiCalls": [
+        "/notifications",
+        "/notifications/read",
+        "/search?q=${encodeURIComponent(term)}"
+      ],
+      "testIds": [
+        "footer-demo-note",
+        "nav-",
+        "nav-account",
+        "nav-account-menu",
+        "nav-admin",
+        "nav-bag-count",
+        "nav-bag-link",
+        "nav-intermediary",
+        "nav-join-artist",
+        "nav-logo",
+        "nav-menu-",
+        "nav-mobile-",
+        "nav-mobile-menu-button",
+        "nav-mobile-sign-in",
+        "nav-notifications-button",
+        "nav-notifications-count",
+        "nav-search-button",
+        "nav-sign-in",
+        "nav-studio",
+        "nav-wishlist-link",
+        "notifications-mark-read",
+        "notifications-panel",
+        "search-dialog",
+        "search-empty",
+        "search-input",
+        "search-result-"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/Markdown.tsx",
+      "lines": 99,
+      "components": [
+        "A",
+        "Markdown",
+        "MarkdownEditor"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/badge.tsx",
+      "lines": 53,
+      "components": [
+        "Badge"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/button.tsx",
+      "lines": 68,
+      "components": [
+        "Button"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/calendar.tsx",
+      "lines": 241,
+      "components": [
+        "Calendar",
+        "CalendarChevron",
+        "CalendarDayButton",
+        "CalendarDayButtonSlot",
+        "CalendarLocaleContext",
+        "CalendarRoot",
+        "CalendarWeekNumber"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/card.tsx",
+      "lines": 104,
+      "components": [
+        "Card",
+        "CardAction",
+        "CardContent",
+        "CardDescription",
+        "CardFooter",
+        "CardHeader",
+        "CardTitle"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/checkbox.tsx",
+      "lines": 30,
+      "components": [
+        "Checkbox"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/dialog.tsx",
+      "lines": 160,
+      "components": [
+        "Dialog",
+        "DialogClose",
+        "DialogContent",
+        "DialogDescription",
+        "DialogFooter",
+        "DialogHeader",
+        "DialogOverlay",
+        "DialogPortal",
+        "DialogTitle",
+        "DialogTrigger"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/dropdown-menu.tsx",
+      "lines": 267,
+      "components": [
+        "DropdownMenu",
+        "DropdownMenuCheckboxItem",
+        "DropdownMenuContent",
+        "DropdownMenuGroup",
+        "DropdownMenuItem",
+        "DropdownMenuLabel",
+        "DropdownMenuPortal",
+        "DropdownMenuRadioGroup",
+        "DropdownMenuRadioItem",
+        "DropdownMenuSeparator",
+        "DropdownMenuShortcut",
+        "DropdownMenuSub",
+        "DropdownMenuSubContent",
+        "DropdownMenuSubTrigger",
+        "DropdownMenuTrigger"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/input.tsx",
+      "lines": 21,
+      "components": [
+        "Input"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/label.tsx",
+      "lines": 19,
+      "components": [
+        "Label"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/popover.tsx",
+      "lines": 91,
+      "components": [
+        "Popover",
+        "PopoverContent",
+        "PopoverDescription",
+        "PopoverHeader",
+        "PopoverTitle",
+        "PopoverTrigger"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/select.tsx",
+      "lines": 215,
+      "components": [
+        "Select",
+        "SelectContent",
+        "SelectGroup",
+        "SelectItem",
+        "SelectLabel",
+        "SelectScrollDownButton",
+        "SelectScrollUpButton",
+        "SelectSeparator",
+        "SelectTrigger",
+        "SelectValue"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/sheet.tsx",
+      "lines": 139,
+      "components": [
+        "Sheet",
+        "SheetClose",
+        "SheetContent",
+        "SheetDescription",
+        "SheetFooter",
+        "SheetHeader",
+        "SheetOverlay",
+        "SheetPortal",
+        "SheetTitle",
+        "SheetTrigger"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/sonner.tsx",
+      "lines": 64,
+      "components": [
+        "Toaster"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/table.tsx",
+      "lines": 115,
+      "components": [
+        "Table",
+        "TableBody",
+        "TableCaption",
+        "TableCell",
+        "TableFooter",
+        "TableHead",
+        "TableHeader",
+        "TableRow"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/tabs.tsx",
+      "lines": 81,
+      "components": [
+        "Tabs",
+        "TabsContent",
+        "TabsList",
+        "TabsTrigger"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/textarea.tsx",
+      "lines": 19,
+      "components": [
+        "Textarea"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    }
+  ],
+  "nextComponents": [
+    {
+      "file": "components/art.tsx",
+      "lines": 5,
+      "components": [
+        "Art"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/artwork-image.tsx",
+      "lines": 10,
+      "components": [
+        "ArtworkImage"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/auction-card.tsx",
+      "lines": 10,
+      "components": [
+        "AuctionCard"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/auction-countdown.tsx",
+      "lines": 14,
+      "components": [
+        "AuctionCountdown"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/bid-panel.tsx",
+      "lines": 18,
+      "components": [
+        "BidPanel"
+      ],
+      "apiCalls": [
+        "/api/bids"
+      ],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/catalogue-browser.tsx",
+      "lines": 47,
+      "components": [
+        "ArtworkCard",
+        "CatalogueBrowser",
+        "FilterGroup"
+      ],
+      "apiCalls": [],
+      "testIds": [
+        "active-filter-",
+        "artwork-card-",
+        "browse-clear-filters",
+        "browse-empty",
+        "browse-filters",
+        "browse-grid",
+        "browse-load-more",
+        "browse-mobile-filters-button",
+        "browse-result-count",
+        "browse-search-input",
+        "browse-sort-select",
+        "category-nav",
+        "category-nav-",
+        "category-nav-more",
+        "filter-",
+        "filter-count-",
+        "filter-group-",
+        "filter-more-",
+        "filter-toggle-",
+        "filters-clear"
+      ],
+      "serverActions": []
+    },
+    {
+      "file": "components/commerce-foundation.tsx",
+      "lines": 5,
+      "components": [
+        "CommerceFoundation"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/dashboard-kit.tsx",
+      "lines": 12,
+      "components": [
+        "DashboardHeading",
+        "DashboardLink",
+        "DashboardSection",
+        "DataTable",
+        "DisabledAction",
+        "FeatureGate",
+        "StatusBadge"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/dashboard-layout.tsx",
+      "lines": 16,
+      "components": [
+        "DashboardChart",
+        "DashboardLayout",
+        "DashboardMetrics"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/enquiry-page.tsx",
+      "lines": 21,
+      "components": [
+        "EnquiryPage"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/footer.tsx",
+      "lines": 3,
+      "components": [
+        "Footer"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/header.tsx",
+      "lines": 3,
+      "components": [
+        "Header"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/icons.tsx",
+      "lines": 19,
+      "components": [
+        "BagIcon",
+        "BellIcon",
+        "CareIcon",
+        "CertificateIcon",
+        "EnvelopeIcon",
+        "HeartIcon",
+        "Icon",
+        "MenuIcon",
+        "PaletteIcon",
+        "ParcelIcon",
+        "PaymentIcon",
+        "PeopleIcon",
+        "SearchIcon",
+        "UserIcon"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/public-content.tsx",
+      "lines": 19,
+      "components": [
+        "ArtworkCards",
+        "AvailabilityState",
+        "PreviewNotice",
+        "PublishedArtworkImage"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/interactive.tsx",
+      "lines": 12,
+      "components": [
+        "ConfirmDialog",
+        "Dialog",
+        "Drawer",
+        "Dropdown",
+        "Tabs",
+        "ToastRegion"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/ui/primitives.tsx",
+      "lines": 23,
+      "components": [
+        "Badge",
+        "Button",
+        "Card",
+        "CardBody",
+        "CardFooter",
+        "CardHeader",
+        "Checkbox",
+        "EmptyState",
+        "ErrorState",
+        "Field",
+        "Input",
+        "LoadingState",
+        "Notice",
+        "Pagination",
+        "Select",
+        "Table",
+        "Textarea"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": []
+    },
+    {
+      "file": "components/watchlist-button.tsx",
+      "lines": 4,
+      "components": [
+        "WatchlistButton"
+      ],
+      "apiCalls": [
+        "/api/auctions/${encodeURIComponent(lotId)}/watchlist"
+      ],
+      "testIds": [],
+      "serverActions": []
+    }
+  ],
+  "nextActions": [
+    {
+      "file": "app/accept-invitation/actions.ts",
+      "lines": 4,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "acceptInvitation"
+      ]
+    },
+    {
+      "file": "app/admin/access/actions.ts",
+      "lines": 13,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "changeAccountStatus",
+        "changeRole",
+        "inviteUser",
+        "revokeInvitation"
+      ]
+    },
+    {
+      "file": "app/admin/auctions/actions.ts",
+      "lines": 12,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "closeAuctionLot",
+        "createAuction",
+        "createAuctionLot",
+        "setBidderStatus",
+        "updateAuctionStatus",
+        "updateLotOperations",
+        "updatePaymentStatus"
+      ]
+    },
+    {
+      "file": "app/admin/marketplace/actions.ts",
+      "lines": 7,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "reviewEntity",
+        "reviewRepresentation",
+        "setAvailability"
+      ]
+    },
+    {
+      "file": "app/auth/actions.ts",
+      "lines": 73,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "login",
+        "logout",
+        "registerArtist",
+        "registerIntermediary",
+        "requestPasswordReset",
+        "updatePassword"
+      ]
+    },
+    {
+      "file": "app/commerce/actions.ts",
+      "lines": 15,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "changeBag",
+        "clearRecentlyViewed",
+        "createReservation",
+        "launchAuction",
+        "markNotificationsRead",
+        "requestRefund",
+        "submitOffer",
+        "toggleWishlist",
+        "transitionOfferAction"
+      ]
+    },
+    {
+      "file": "app/contact/actions.ts",
+      "lines": 23,
+      "components": [
+        "RETURN_PATHS",
+        "TYPES"
+      ],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "submitEnquiry"
+      ]
+    },
+    {
+      "file": "app/intermediary/actions.ts",
+      "lines": 8,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "requestRepresentation",
+        "revokeRepresentation",
+        "saveIntermediaryProfile",
+        "submitIntermediaryProfile"
+      ]
+    },
+    {
+      "file": "app/profile/actions.ts",
+      "lines": 4,
+      "components": [],
+      "apiCalls": [],
+      "testIds": [],
+      "serverActions": [
+        "updateProfile"
+      ]
+    }
+  ]
+}

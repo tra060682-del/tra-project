@@ -1,0 +1,1017 @@
+{
+  "generatedAt": "2026-11-14T09:48:39.852Z",
+  "pairs": [
+    [
+      "home",
+      "/",
+      "/"
+    ],
+    [
+      "catalogue",
+      "/browse",
+      "/artworks"
+    ],
+    [
+      "artists",
+      "/artists",
+      "/artists"
+    ],
+    [
+      "collections",
+      "/collections",
+      "/collections"
+    ],
+    [
+      "auctions",
+      "/auctions",
+      "/auctions"
+    ],
+    [
+      "journal",
+      "/journal",
+      "/journal"
+    ],
+    [
+      "advisory",
+      "/advisory",
+      "/art-advisory"
+    ],
+    [
+      "commission",
+      "/commission",
+      "/commissions"
+    ],
+    [
+      "corporate",
+      "/corporate",
+      "/corporate-art"
+    ],
+    [
+      "resale",
+      "/resale",
+      "/resale"
+    ],
+    [
+      "contact",
+      "/contact",
+      "/contact"
+    ],
+    [
+      "about",
+      "/about",
+      "/about"
+    ],
+    [
+      "authenticity",
+      "/authenticity",
+      "/authenticity"
+    ],
+    [
+      "how-to-bid",
+      "/how-to-bid",
+      "/how-it-works"
+    ],
+    [
+      "for-artists",
+      "/for-artists",
+      "/for-artists"
+    ],
+    [
+      "legal",
+      "/legal",
+      "/legal"
+    ],
+    [
+      "certificate",
+      "/verify-certificate",
+      "/certificates/verify"
+    ],
+    [
+      "commerce-verify",
+      "/verify",
+      "/certificates/verify"
+    ],
+    [
+      "view-in-room",
+      "/view-in-room",
+      "/artworks"
+    ],
+    [
+      "bag",
+      "/bag",
+      "/wishlist"
+    ],
+    [
+      "account",
+      "/account",
+      "/account"
+    ],
+    [
+      "dashboard",
+      "/dashboard",
+      "/workspace"
+    ],
+    [
+      "intermediary",
+      "/intermediary",
+      "/intermediary"
+    ],
+    [
+      "join",
+      "/join",
+      "/join-as-artist"
+    ],
+    [
+      "studio",
+      "/studio",
+      "/artist"
+    ],
+    [
+      "admin",
+      "/admin",
+      "/admin"
+    ],
+    [
+      "sign-in",
+      "/sign-in",
+      "/login"
+    ],
+    [
+      "sign-up",
+      "/sign-up",
+      "/join-as-artist"
+    ]
+  ],
+  "results": [
+    {
+      "key": "home",
+      "target": "emergent",
+      "route": "/",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/\", waiting until \"domcon"
+    },
+    {
+      "key": "home",
+      "target": "next",
+      "route": "/",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/",
+      "title": "tRA — The Real Art",
+      "h1": [
+        "Original Indian Art.Curated with Reverence."
+      ],
+      "h2": [
+        "Curated with Care",
+        "Assisted Purchase",
+        "Artist Empowerment",
+        "Authenticity Assured",
+        "Art worth living with.",
+        "For the artist.For the collector.For the art.",
+        "How it works.",
+        "Not sure where to begin?"
+      ],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 5,
+      "overflow": 0,
+      "textLength": 2565
+    },
+    {
+      "key": "catalogue",
+      "target": "emergent",
+      "route": "/browse",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/browse\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/browse\", waiting u"
+    },
+    {
+      "key": "catalogue",
+      "target": "next",
+      "route": "/artworks",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/artworks",
+      "title": "Browse original art | tRA",
+      "h1": [
+        "Browse original art"
+      ],
+      "h2": [
+        "Filters",
+        "No works match these filters"
+      ],
+      "buttons": [
+        "Painting",
+        "Printmaking",
+        "Digital Art",
+        "Drawing",
+        "Prints",
+        "Sculpture",
+        "Photography",
+        "Mixed Media",
+        "Textile Art",
+        "Ceramics",
+        "Installation Art",
+        "Traditional Indian Art"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1718
+    },
+    {
+      "key": "artists",
+      "target": "emergent",
+      "route": "/artists",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/artists\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/artists\", waiting"
+    },
+    {
+      "key": "artists",
+      "target": "next",
+      "route": "/artists",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/artists",
+      "title": "Artists | tRA",
+      "h1": [
+        "Artists and their stories."
+      ],
+      "h2": [
+        "Artist profiles are awaiting publication."
+      ],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 939
+    },
+    {
+      "key": "collections",
+      "target": "emergent",
+      "route": "/collections",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/collections\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/collections\","
+    },
+    {
+      "key": "collections",
+      "target": "next",
+      "route": "/collections",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/collections",
+      "title": "Curated Collections | tRA",
+      "h1": [
+        "Ways of seeing India."
+      ],
+      "h2": [
+        "Collections are awaiting publication."
+      ],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 942
+    },
+    {
+      "key": "auctions",
+      "target": "emergent",
+      "route": "/auctions",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/auctions\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/auctions\", waiti"
+    },
+    {
+      "key": "auctions",
+      "target": "next",
+      "route": "/auctions",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/auctions",
+      "title": "Auction Lobby | tRA",
+      "h1": [
+        "Rare works.Considered viewing."
+      ],
+      "h2": [
+        "Pichwai painting by an unknown Rajasthani artist",
+        "No approved auction previews are published."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1515
+    },
+    {
+      "key": "journal",
+      "target": "emergent",
+      "route": "/journal",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/journal\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/journal\", waiting"
+    },
+    {
+      "key": "journal",
+      "target": "next",
+      "route": "/journal",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/journal",
+      "title": "Art Journal | tRA",
+      "h1": [
+        "Stories, practices and ways of seeing."
+      ],
+      "h2": [
+        "Bharat Mata by Abanindranath Tagore",
+        "The journal is being edited."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1053
+    },
+    {
+      "key": "advisory",
+      "target": "emergent",
+      "route": "/advisory",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/advisory\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/advisory\", waiti"
+    },
+    {
+      "key": "advisory",
+      "target": "next",
+      "route": "/art-advisory",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/art-advisory",
+      "title": "Art Advisory | tRA",
+      "h1": [
+        "Find art that belongs with you."
+      ],
+      "h2": [
+        "Jahangir visiting the ascetic Jadrup, attributed to Govardhan",
+        "Secure submission is not configured."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Record enquiry",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1044
+    },
+    {
+      "key": "commission",
+      "target": "emergent",
+      "route": "/commission",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/commission\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/commission\", w"
+    },
+    {
+      "key": "commission",
+      "target": "next",
+      "route": "/commissions",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/commissions",
+      "title": "Custom Commissions | tRA",
+      "h1": [
+        "A work made with purpose."
+      ],
+      "h2": [
+        "Bharat Mata by Abanindranath Tagore",
+        "Secure submission is not configured."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Record enquiry",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1059
+    },
+    {
+      "key": "corporate",
+      "target": "emergent",
+      "route": "/corporate",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/corporate\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/corporate\", wai"
+    },
+    {
+      "key": "corporate",
+      "target": "next",
+      "route": "/corporate-art",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/corporate-art",
+      "title": "Corporate Art | tRA",
+      "h1": [
+        "Art for places people share."
+      ],
+      "h2": [
+        "Nineteenth-century Kalighat painting of the three steps of Vishnu",
+        "Secure submission is not configured."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Record enquiry",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 995
+    },
+    {
+      "key": "resale",
+      "target": "emergent",
+      "route": "/resale",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/resale\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/resale\", waiting u"
+    },
+    {
+      "key": "resale",
+      "target": "next",
+      "route": "/resale",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/resale",
+      "title": "Resale Enquiries | tRA",
+      "h1": [
+        "A careful route to a new home."
+      ],
+      "h2": [
+        "Pichwai painting by an unknown Rajasthani artist",
+        "Secure submission is not configured."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Record enquiry",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1066
+    },
+    {
+      "key": "contact",
+      "target": "emergent",
+      "route": "/contact",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/contact\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/contact\", waiting"
+    },
+    {
+      "key": "contact",
+      "target": "next",
+      "route": "/contact",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/contact",
+      "title": "Contact | tRA",
+      "h1": [
+        "Let’s talk about art."
+      ],
+      "h2": [
+        "A painted human face by Rabindranath Tagore",
+        "Secure submission is not configured."
+      ],
+      "buttons": [
+        "View full image",
+        "Close",
+        "Record enquiry",
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 2,
+      "overflow": 0,
+      "textLength": 1029
+    },
+    {
+      "key": "about",
+      "target": "emergent",
+      "route": "/about",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/about\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/about\", waiting unt"
+    },
+    {
+      "key": "about",
+      "target": "next",
+      "route": "/about",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/about",
+      "title": "tRA — The Real Art",
+      "h1": [
+        "Rooted in art. Open to discovery."
+      ],
+      "h2": [],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 880
+    },
+    {
+      "key": "authenticity",
+      "target": "emergent",
+      "route": "/authenticity",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/authenticity\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/authenticity"
+    },
+    {
+      "key": "authenticity",
+      "target": "next",
+      "route": "/authenticity",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/authenticity",
+      "title": "Authenticity and Certificates | tRA",
+      "h1": [
+        "Evidence before assertion."
+      ],
+      "h2": [
+        "Public verification",
+        "Current limitation"
+      ],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1235
+    },
+    {
+      "key": "how-to-bid",
+      "target": "emergent",
+      "route": "/how-to-bid",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/how-to-bid\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/how-to-bid\", w"
+    },
+    {
+      "key": "how-to-bid",
+      "target": "next",
+      "route": "/how-it-works",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/how-it-works",
+      "title": "tRA — The Real Art",
+      "h1": [
+        "A more personal way to collect."
+      ],
+      "h2": [],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 986
+    },
+    {
+      "key": "for-artists",
+      "target": "emergent",
+      "route": "/for-artists",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/for-artists\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/for-artists\","
+    },
+    {
+      "key": "for-artists",
+      "target": "next",
+      "route": "/for-artists",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/for-artists",
+      "title": "tRA — The Real Art",
+      "h1": [
+        "Your art. Your authorship."
+      ],
+      "h2": [],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 980
+    },
+    {
+      "key": "legal",
+      "target": "emergent",
+      "route": "/legal",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/legal\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/legal\", waiting unt"
+    },
+    {
+      "key": "legal",
+      "target": "next",
+      "route": "/legal",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/legal",
+      "title": "Legal and Policies | tRA",
+      "h1": [
+        "Clear terms, careful stewardship."
+      ],
+      "h2": [
+        "Privacy policy",
+        "Website terms",
+        "Authenticity and certificates"
+      ],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1100
+    },
+    {
+      "key": "certificate",
+      "target": "emergent",
+      "route": "/verify-certificate",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/verify-certificate\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/verify"
+    },
+    {
+      "key": "certificate",
+      "target": "next",
+      "route": "/certificates/verify",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/certificates/verify",
+      "title": "Verify a Certificate | tRA",
+      "h1": [
+        "Verify a certificate."
+      ],
+      "h2": [
+        "Public verification is pending approval."
+      ],
+      "buttons": [
+        "Verify certificate",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1135
+    },
+    {
+      "key": "commerce-verify",
+      "target": "emergent",
+      "route": "/verify",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/verify\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/verify\", waiting u"
+    },
+    {
+      "key": "commerce-verify",
+      "target": "next",
+      "route": "/certificates/verify",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/certificates/verify",
+      "title": "Verify a Certificate | tRA",
+      "h1": [
+        "Verify a certificate."
+      ],
+      "h2": [
+        "Public verification is pending approval."
+      ],
+      "buttons": [
+        "Verify certificate",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1135
+    },
+    {
+      "key": "view-in-room",
+      "target": "emergent",
+      "route": "/view-in-room",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/view-in-room\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/view-in-room"
+    },
+    {
+      "key": "view-in-room",
+      "target": "next",
+      "route": "/artworks",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/artworks",
+      "title": "Browse original art | tRA",
+      "h1": [
+        "Browse original art"
+      ],
+      "h2": [
+        "Filters",
+        "No works match these filters"
+      ],
+      "buttons": [
+        "Painting",
+        "Printmaking",
+        "Digital Art",
+        "Drawing",
+        "Prints",
+        "Sculpture",
+        "Photography",
+        "Mixed Media",
+        "Textile Art",
+        "Ceramics",
+        "Installation Art",
+        "Traditional Indian Art"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1718
+    },
+    {
+      "key": "bag",
+      "target": "emergent",
+      "route": "/bag",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/bag\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/bag\", waiting until \""
+    },
+    {
+      "key": "bag",
+      "target": "next",
+      "route": "/wishlist",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/wishlist",
+      "title": "tRA — The Real Art",
+      "h1": [
+        "Art to return to."
+      ],
+      "h2": [],
+      "buttons": [
+        "Subscribe"
+      ],
+      "forms": 2,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 877
+    },
+    {
+      "key": "account",
+      "target": "emergent",
+      "route": "/account",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/account\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/account\", waiting"
+    },
+    {
+      "key": "account",
+      "target": "next",
+      "route": "/account",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "dashboard",
+      "target": "emergent",
+      "route": "/dashboard",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/dashboard\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/dashboard\", wai"
+    },
+    {
+      "key": "dashboard",
+      "target": "next",
+      "route": "/workspace",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "intermediary",
+      "target": "emergent",
+      "route": "/intermediary",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/intermediary\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/intermediary"
+    },
+    {
+      "key": "intermediary",
+      "target": "next",
+      "route": "/intermediary",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "join",
+      "target": "emergent",
+      "route": "/join",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/join\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/join\", waiting until"
+    },
+    {
+      "key": "join",
+      "target": "next",
+      "route": "/join-as-artist",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/join-as-artist",
+      "title": "Join as Artist | tRA",
+      "h1": [
+        "Your practice,thoughtfully presented."
+      ],
+      "h2": [],
+      "buttons": [
+        "Create artist account ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1080
+    },
+    {
+      "key": "studio",
+      "target": "emergent",
+      "route": "/studio",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/studio\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/studio\", waiting u"
+    },
+    {
+      "key": "studio",
+      "target": "next",
+      "route": "/artist",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "admin",
+      "target": "emergent",
+      "route": "/admin",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/admin\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/admin\", waiting unt"
+    },
+    {
+      "key": "admin",
+      "target": "next",
+      "route": "/admin",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "sign-in",
+      "target": "emergent",
+      "route": "/sign-in",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/sign-in\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/sign-in\", waiting"
+    },
+    {
+      "key": "sign-in",
+      "target": "next",
+      "route": "/login",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/login",
+      "title": "Sign in | tRA",
+      "h1": [
+        "Welcome back."
+      ],
+      "h2": [
+        "New to tRA?"
+      ],
+      "buttons": [
+        "Sign in ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 898
+    },
+    {
+      "key": "sign-up",
+      "target": "emergent",
+      "route": "/sign-up",
+      "status": 0,
+      "error": "Error: page.goto: net::ERR_NETWORK_ACCESS_DENIED at https://the-real-art.emergent.host/sign-up\nCall log:\n\u001b[2m  - navigating to \"https://the-real-art.emergent.host/sign-up\", waiting"
+    },
+    {
+      "key": "sign-up",
+      "target": "next",
+      "route": "/join-as-artist",
+      "status": 200,
+      "error": "",
+      "finalUrl": "http://localhost:3000/join-as-artist",
+      "title": "Join as Artist | tRA",
+      "h1": [
+        "Your practice,thoughtfully presented."
+      ],
+      "h2": [],
+      "buttons": [
+        "Create artist account ↗",
+        "Subscribe"
+      ],
+      "forms": 3,
+      "images": 0,
+      "overflow": 0,
+      "textLength": 1080
+    }
+  ]
+}
