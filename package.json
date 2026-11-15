@@ -16,6 +16,7 @@
     "test:auction-load": "node --test tests/load/*.test.mjs",
     "test:e2e": "node scripts/run-playwright.mjs",
     "test:collections-idle": "node scripts/run-playwright.mjs --grep collections-idle",
+    "test:dashboard-preview": "node --test tests/integration/dashboard-preview.test.mjs tests/security/dashboard-preview-security.test.mjs",
     "test:database": "node scripts/database-rehearsal.mjs",
     "test:auction-database": "node scripts/auction-database-rehearsal.mjs",
     "test:phase1-database": "node scripts/phase1-database-rehearsal.mjs",
